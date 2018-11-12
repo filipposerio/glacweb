@@ -221,6 +221,7 @@ const searchweb = ( event ) => {
   objRicetta.cf = event.target.cf.value;
   objRicetta.idAccettazione = localStorage.idAccettazione;
   objRicetta.idPaziente = localStorage.idPaziente;
+  objRicetta.pincode = localStorage.pincode;
 
   model.searchRicettaWeb( objRicetta);
 

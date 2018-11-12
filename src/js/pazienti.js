@@ -23,45 +23,45 @@ const userHTMLTemplate = `
   <legend> Paziente </legend>
   <form id="user">
     <div class="form-group">
-    <label for="IDANAGRAFICA">Codice paziente</label><br>
-    <input id="idPaziente" class="form-control" type="text" name="IDANAGRAFICA" disabled>
+    <label for="idanagrafica">Codice paziente</label><br>
+    <input id="idPaziente" class="form-control" type="text" name="idanagrafica" disabled>
       <label for="nome">Nome</label><br>
-      <input id="nome" class="form-control" type="text" name="NOME" required>
+      <input id="nome" class="form-control" type="text" name="nome" required>
       <label for="cognome">Cognome</label><br>
-      <input id="cognome"  class="form-control" type="text" name="COGNOME" required>
+      <input id="cognome"  class="form-control" type="text" name="cognome" required>
       </br>
     <label for='comuneNascita'>Comune di nascita:</label>
-    <input list="comuni"  class="form-control" name='COMUNENASCITA' id='comuneNascita' autocomplete=off>
+    <input list="comuni"  class="form-control" name='comunenascita' id='comuneNascita' autocomplete=off>
     <datalist id="comuni"></datalist>
     </br>
     </br>
       <label for='dataNascita'>Data di nascita (AAAA-MM-GG):</label>
-      <input id="dataNascita" type="date" name="DATANASCITA" required>
+      <input id="dataNascita" type="date" name="datanascita" required>
       <br>
       <label for='sesso'>Sesso</label>
-      <select id=sesso" name='SESSO'>
+      <select id=sesso" name='sesso'>
         <option value="M">M</option>
         <option value="F">F</option>
       </select>
       <br>
       <br>
       <label for="cf">Codice Fiscale <span><button class="btn" id="calcolaCF1" >Calcola codice fiscale</button><span></label><br>
-      <input id="cf"  class="form-control"  type="text" name="CF" maxlength="16" required>
+      <input id="cf"  class="form-control"  type="text" name="cf" maxlength="16" required>
  
     <label for='comuneResidenza'>Comune di residenza:</label>
-    <input list="comuniresidenza"  class="form-control" name='COMUNERESIDENZA' id='comuneResidenza' autocomplete=off>
+    <input list="comuniresidenza"  class="form-control" name='comuneresidenza' id='comuneResidenza' autocomplete=off>
     <datalist id="comuniresidenza"></datalist>
     </br>
     <label for="indirizzo">Indirizzo</label>
-    <input id="indirizzoResidenza"  class="form-control"  type="text" name="INDIRIZZORESIDENZA" maxlength="100" required>
+    <input id="indirizzoResidenza"  class="form-control"  type="text" name="indirizzoresidenza" maxlength="100" required>
     <label for="telefono">Contatti telefonici</label><br>
-    <input id="telefono"  class="form-control"  type="text" name="TELEFONO" maxlength="50" required>
+    <input id="telefono"  class="form-control"  type="text" name="telefono" maxlength="50" required>
     <label for="email">Contatti email</label><br>
-    <input id="email"  class="form-control"  type="text" name="EMAIL" maxlength="50" required>
+    <input id="email"  class="form-control"  type="text" name="email" maxlength="50" required>
     <label for="distrettoasl">Distretto sanitario ASL di appartenenza</label><br>
-    <input id="distrettoasl"  class="form-control"  type="text" name="DISTRETTOASL" maxlength="50" required>
+    <input id="distrettoasl"  class="form-control"  type="text" name="distrettoasl" maxlength="50" required>
     <label for="documento">N. Documento (CI, Pat....)</label><br>
-    <input id="documento"  class="form-control"  type="text" name="NDOCUMENTO" maxlength="50" required>        
+    <input id="documento"  class="form-control"  type="text" name="ndocumento" maxlength="50" required>        
     <input type='submit'></input>
     </p>
   </form>
@@ -125,7 +125,7 @@ document.addEventListener( 'modificaPaziente', ( event ) => {
   document.querySelector( '.read-sub' ).innerHTML = userHTMLTemplate;
   const form = document.forms['user'];
   dm.JSONToForm( form , event.data)
-  form.dataNascita.value = event.data.DATANASCITA.substring(0,10)
+  form.dataNascita.value = event.data.datanascita.substring(0,10)
   const btn_cf = document.getElementById('calcolaCF1')
   btn_cf.addEventListener('click',fncalcolaCF,false);
   const aa = `
@@ -139,14 +139,14 @@ document.addEventListener( 'modificaPaziente', ( event ) => {
     event.preventDefault();
     console.log("scattata submit per update paziente");
     
-    if (verificaComuneInlista(form.COMUNENASCITA.value)){
+    if (verificaComuneInlista(form.comunenascita.value)){
         verifica=true
     }
     else   {
       message.show("Attenione selezionare una voce dall'elenco per il comune di nascita")
       verifica  = false;
     }
-    if (verificaComuneInlista(form.COMUNERESIDENZA.value)){
+    if (verificaComuneInlista(form.comuneresidenza.value)){
       verifica=true
     }
     else   {
@@ -486,8 +486,8 @@ const list = ( rows ) => {
           */
          console.log("verifica obj Paziente ************** :")
          for (let h=0; h<rows.length; h++){
-           console.log(row.id+"("+row.id.length+") "+rows[h].IDANAGRAFICA+"("+rows[h].IDANAGRAFICA.length+")");
-           if (rows[h].IDANAGRAFICA == row.id) {
+           console.log(row.id+"("+row.id.length+") "+rows[h].idanagrafica+"("+rows[h].idanagrafica.toString().length+")");
+           if (rows[h].idanagrafica == row.id) {
              console.log("TROVATO");
              objPaziente = rows[h]
            }
