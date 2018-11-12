@@ -37,7 +37,11 @@ routes.configRoutes( app, server );
 
 //  ------------------------ BEGIN START SERVER -----------------------
 //mdb.conn();
-server.listen( 3003 );
+let port = process.env.PORT; //HEROKU PORT
+if (port == null || port == "") {
+  port = 3003;
+}
+server.listen( port);
 console.log( 'Exp Listen on port %d in %s mode', server.address().port, app.settings.env );
 const strIng ="1974-07-28"
 const strIta ="28-07-1974"
