@@ -1,6 +1,9 @@
 {
   "name": "glacweb",
   "version": "0.0.1",
+  "engines": {
+    "node": "8.11.3"
+  },
   "description": "glacweb app",
   "main": "app.js",
   "dependencies": {
