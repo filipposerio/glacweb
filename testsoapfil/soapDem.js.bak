@@ -1,0 +1,71 @@
+var soap = require('soap');
+var constants = require('constants');
+var fs = require('fs');
+var strcrypt = require('./strcrypt.js');
+
+	const cf_crypt = strcrypt.encryptStringWithRsaPublicKey('LFNGCM40A53G273V','.\\SanitelCF.cer');
+	console.log(cf_crypt);
+
+	//const pincode_crypt = strcrypt.encryptStringWithRsaPublicKey('5693894364','.\\SanitelCF.cer');
+	const pincode_crypt = 'wzf9oU62B\/IZOVzWkp2NK9SejCvycjBhJOgyBzJQnklMo114PEfUJgRKpc+qrU\/ZPmT06kk87LR5z2eF1SDrZ0Kg3JkLXWFaLoaZxkl+aiS\/ItZM8nKj8zi39v2fvFCMDw+HTKqYR\/aHg8necncLRertTKChobWMb9OjYaaqTJ8=\'
+	
+	console.log(pincode_crypt);
+ //var myurl = 'c:/nodeprj/callsoap/demVisualizzaErogato.wsdl';
+ var myurl = './demVisualizzaErogato.wsdl';
+ //var myurl = 'https://demservicetest.sanita.finanze.it/DemRicettaErogatoServicesWeb/services/demVisualizzaErogato.wsdl';
+ var args = {
+ 			pinCode: pincode_crypt,
+      codiceRegioneErogatore: '190',
+      codiceAslErogatore: '206',
+      codiceSsaErogatore: '426700',
+      nre: '1900A4317267908',
+      cfAssistito: cf_crypt,
+      tipoOperazione: '1'
+      };
+      var auth = " Basic " + new Buffer("UVJ6EBVJ" + ":" + "Agosto_2018").toString("base64");
+      var myHeaders = {
+				wsdl_headers: { "Authorization": auth}
+    	}
+			var myHeaders = {
+				"Authorization": auth
+			}
+
+soap.createClient(myurl, myHeaders, function(err, client) {
+//soap.createClient(myurl, function(err, client) {
+				console.log(myHeaders)
+				//client.addHttpHeader('Authorization',auth);
+         console.log('SOAPDEM.JS dentro callbakc SOAP.CREATECLIENT inizio messaggio');
+         //console.log(client.wsdl.options);
+         if (err) {
+         	console.log('SOAPDEM.JS ERRORE!!!!!! ' + err.message);
+         	}
+
+//      console.log(client.describe());
+
+      //client.setSecurity(new soap.BasicAuthSecurity('UWT3CBXX', 'PBUW9EBP'));
+     client.setSecurity({
+      addOptions:function(options){
+        options.cert = fs.readFileSync('c:/nodeprj/callsoap/certTest.pem');
+        //options.key = fs.readFileSync('c:/nodeprj/callsoap/certTest.pem');
+        options.rejectUnauthorized = false;
+        options.secureOptions = constants.SSL_OP_NO_TLSv1_2;
+        options.strictSSL = false;
+       // options.agent = new https.Agent(options);
+      },
+      toXML:function(){return '';}
+    });
+ console.log("SOAPDEM.JS PRIMA DELLA CHIAMATA ALLA VISUALIZZA EROGATO");
+ //console.log(args);
+      client.visualizzaErogato(args,  function(err, result) {
+     console.log("*******************CHIAMO LA VISUALIZZA EROGATO");
+        //console.log(args);
+         if (err) {
+         	console.log("ERRORE CHIAMATA FUNZIONE "  +err.message);
+        }
+         else {
+         	console.log(result);
+        }
+
+      },{},    myHeaders);
+
+  },'https://demservice.sanita.finanze.it/DemRicettaErogatoServicesWeb/services/demVisualizzaErogato');

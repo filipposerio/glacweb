@@ -1,0 +1,54 @@
+http://localhost:8080/RestRicetta/RestServiceImpl.svc/PrendiInCaricoRicettaJson/426700@1900A4317267908@LFNGCM40A53G273V@5693894364@UVJ6EBVJ@Agosto_2018@190@206
+426700
+1900A4317267908
+LFNGCM40A53G273V
+UVJ6EBVJ
+Agosto_2018
+190
+206
+
+{"jsondataPrendiInCaricoResult":"{\"Esito\" : \"0000\",\"Errori\" : \"Operazione eseguita correttamente\",\"aslAssistito\" : \"206\",\"cfMedico1\" : \"LGLVCN68B49G273W\",\"cfMedico2\" : \"\",\"chiusuraDiff\" : \"\",\"chiusuraForzata\" : \"\",\"classePriorita\" : \"P\",\"codASLAo\" : \"206\",\"codAutenticazioneErogatore\" : \"000405819615824082018110019591\",\"codAutenticazioneMedico\" : \"210820181901582180002209553863\",\"codDiagnosi\" : \"\",\"codEsenzione\" : \"0031\",\"codEsitoVisualizzazione\" : \"0000\",\"codiceAss\" : \"EJ4w7f+mzdWCcGlqLsnCVlxBwpjpvg1BVtTN9d+FphSI4YY6K3uKxOU89PT90P5fXp8EYQdxCDHPf0a9ndIz\/P25KybBZiJguTV9kWhFYL7KoC\/sl04weMvCnoz9zxYW1p4QHHHSlB8+JOE1ORwT5TFecdncIrEO4w4XS4HToRQ=\",\"codRegione\" : \"190\",\"codSpecializzazione\" : \"F\",\"codStruttura\" : \"\",\"cognNome\" : \"ALFANO GIACOMA\",\"dataCompilazione\" : \"2018-08-21 00:00:00\",\"dataNascitaEstero\" : \"\",\"dataNascitaEstero\" : \"\",\"dataScadTessera\" : \"\",\"dataSpedizione\" : \"\",\"descrizioneDiagnosi\" : \"IGT RIDOTTA TOLLERANZA GLUCOSIO - EPATITE CRONICA - IPERTENSIONE ARTERIOSA- TIROIDITE -DISLIPIDEMIA\",\"statoProcesso\" : \"5\",\"NEsami\" : \"3\",\"Esame1\" : \"90141@COLESTEROLO HDL@@0@0@0\",\"Esame2\" : \"90432@TRIGLICERIDI@@0@0@0\",\"Esame3\" : \"90163S@CREATININA
+ [SIERO]@@0@0@0\",\" }"}
+
+//const cf_crypt = strcrypt.encryptStringWithRsaPublicKey('LFNGCM40A53G273V','.\\SanitelCF.cer');
+const cf_crypt="eu4dKGsMSsIWyGNP4qNovlgjqFn7LoUz2aPc8LMSsL5n4Cun26N/8gCFAg8yEOO0yNGcIII+KJn5qZweOB/UGTgoCbbxeTTH399y9aypqWh5r9r2PWvVMJJ+VH/pn4GGS4070Vy5icZvmbfIGJMfo6Esa909xzQ8BR/Gz1bHO7s="
+//const pincode_crypt = strcrypt.encryptStringWithRsaPublicKey('5693894364','.\\SanitelCF.cer');
+const pincode_crypt = "wzf9oU62B/IZOVzWkp2NK9SejCvycjBhJOgyBzJQnklMo114PEfUJgRKpc+qrU/ZPmT06kk87LR5z2eF1SDrZ0Kg3JkLXWFaLoaZxkl+aiS/ItZM8nKj8zi39v2fvFCMDw+HTKqYR/aHg8necncLRertTKChobWMb9OjYaaqTJ8="
+
+
+
+{"Esito" : "0000","Errori" : "Operazione eseguita correttamente","aslAssistito" : "206",
+"cfMedico1" : "LGLVCN68B49G273W",
+"cfMedico2" : "",
+"chiusuraDiff" : "",
+"chiusuraForzata" : "",
+"classePriorita" : "P",
+"codASLAo" : "206",
+"codAutenticazioneErogatore" : "000405819615824082018110019591",
+"codAutenticazioneMedico" : "210820181901582180002209553863",
+"codDiagnosi" : "",
+"codEsenzione" : "0031",
+"codEsitoVisualizzazione" : "0000",
+"codiceAss" : "ircO/qwh6xULbYBiEPNlaL96nIV49Et36tn25u8zAELqtXS6Ssv+IUT5plFd4jUgWifNnw/iqZEdVKQ3InceAdn7gH0eW0RfVcJXsR0bvGVKt4H3oVF9zR9PSJfpqVSYqeQe9GrinFFfHc9tvRFrwIPIDFJAMGau3aT44SPhVUs=",
+"codRegione" : "190",
+"codSpecializzazione" : "F",
+"codStruttura" : "",
+"cognNome" : "ALFANO GIACOMA",
+"dataCompilazione" : "2018-08-21 00:00:00",
+"dataNascitaEstero" : "",
+"dataNascitaEstero" : "",
+"dataScadTessera" : "",
+"dataSpedizione" : "",
+"descrizioneDiagnosi" : "IGT RIDOTTA TOLLERANZA GLUCOSIO - EPATITE CRONICA - IPERTENSIONE ARTERIOSA- TIROIDITE -DISLIPIDEMIA",
+"statoProcesso" : "5",
+"NEsami" : "3",
+"Esame1" : "90141@COLESTEROLO HDL@@0@0@0",
+"Esame2" : "90432@TRIGLICERIDI@@0@0@0",
+"Esame3" : "90163S@CREATININA [SIERO]@@0@0@0"," }
+
+
+
+
+
+1900A4293642791 - BNMMRA29S60G273F
+1900A4289224132 - CSTTRS36R56G273S

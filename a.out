@@ -1,0 +1,151 @@
+
+> ursa@0.9.4 install c:\nodeprj\glacweb\node_modules\ursa
+> node-gyp rebuild
+
+
+c:\nodeprj\glacweb\node_modules\ursa>if not defined npm_config_node_gyp (node "C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\npm-lifecycle\node-gyp-bin\\..\..\node_modules\node-gyp\bin\node-gyp.js" rebuild )  else (node "C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\node-gyp\bin\node-gyp.js" rebuild ) 
+Compilazione dei progetti nella soluzione uno alla volta. Per abilitare la compilazione parallela, aggiungere l'opzione "/m".
+  ursaNative.cc
+  win_delay_load_hook.cc
+C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\node-gyp\src\win_delay_load_hook.cc(16): fatal error C1083: Cannot open include file: 'windows.h': No such file or directory [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(334): error C2988: unrecognizable template declaration/definition [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(334): error C2059: syntax error : 'using' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(466): error C2332: 'enum' : missing tag name [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(466): error C2236: unexpected 'class' 'v8::WeakCallbackType'. Did you forget a ';'? [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(466): error C3381: 'v8::WeakCallbackType' : assembly access specifiers are only available in code compiled with a /clr option [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(466): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(466): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(466): error C2143: syntax error : missing ';' before '}' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(466): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(606): error C2253: 'PersistentBase<T>' : pure specifier or abstract override specifier only allowed on virtual function [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+          c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(627) : see reference to class template instantiation 'v8::PersistentBase<T>' being compiled
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(827): error C2253: 'Global<T>' : pure specifier or abstract override specifier only allowed on virtual function [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+          c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(834) : see reference to class template instantiation 'v8::Global<T>' being compiled
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(839): error C2988: unrecognizable template declaration/definition [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(839): error C2059: syntax error : 'using' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(905): error C2989: 'v8::HandleScope' : class template has already been declared as a non-class template [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+          c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(317) : see declaration of 'v8::HandleScope'
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(941): error C2989: 'v8::EscapableHandleScope' : class template has already been declared as a non-class template [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+          c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(137) : see declaration of 'v8::EscapableHandleScope'
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(979): error C2989: 'v8::Data' : class template has already been declared as a non-class template [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+          c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(73) : see declaration of 'v8::Data'
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(1212): error C2989: 'v8::Script' : class template has already been declared as a non-class template [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+          c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(97) : see declaration of 'v8::Script'
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(1657): error C2989: 'v8::StackTrace' : class template has already been declared as a non-class template [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+          c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(102) : see declaration of 'v8::StackTrace'
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(1725): error C2989: 'v8::StackFrame' : class template has already been declared as a non-class template [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+          c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(101) : see declaration of 'v8::StackFrame'
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(2386): error C2989: 'v8::Value' : class template has already been declared as a non-class template [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+          c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(110) : see declaration of 'v8::Value'
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(2392): error C2989: 'v8::Primitive' : class template has already been declared as a non-class template [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+          c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(92) : see declaration of 'v8::Primitive'
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(2407): error C2989: 'v8::Boolean' : class template has already been declared as a non-class template [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+          c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(69) : see declaration of 'v8::Boolean'
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(2428): error C2989: 'v8::Name' : class template has already been declared as a non-class template [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+          c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(85) : see declaration of 'v8::Name'
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(2436): error C2332: 'enum' : missing tag name [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(2436): error C3306: 'v8::<unnamed-tag>': unnamed class template is not allowed [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(2448): error C2236: unexpected 'class' 'v8::NewStringType'. Did you forget a ';'? [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(2448): error C3381: 'v8::NewStringType' : assembly access specifiers are only available in code compiled with a /clr option [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(2822): error C2989: 'v8::String' : class template has already been declared as a non-class template [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+          c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(103) : see declaration of 'v8::String'
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(2873): error C2989: 'v8::Symbol' : class template has already been declared as a non-class template [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+          c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(105) : see declaration of 'v8::Symbol'
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(2907): error C2989: 'v8::Private' : class template has already been declared as a non-class template [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+          c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(107) : see declaration of 'v8::Private'
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(2921): error C2989: 'v8::Number' : class template has already been declared as a non-class template [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+          c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(86) : see declaration of 'v8::Number'
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(2936): error C2989: 'v8::Integer' : class template has already been declared as a non-class template [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+          c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(81) : see declaration of 'v8::Integer'
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(2950): error C2989: 'v8::Int32' : class template has already been declared as a non-class template [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+          c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(80) : see declaration of 'v8::Int32'
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(2964): error C2989: 'v8::Uint32' : class template has already been declared as a non-class template [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+          c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(108) : see declaration of 'v8::Uint32'
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3038): error C2332: 'enum' : missing tag name [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3038): error C3306: 'v8::<unnamed-tag>': unnamed class template is not allowed [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3038): error C2236: unexpected 'class' 'v8::KeyCollectionMode'. Did you forget a ';'? [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3038): error C3381: 'v8::KeyCollectionMode' : assembly access specifiers are only available in code compiled with a /clr option [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3044): error C2332: 'enum' : missing tag name [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3044): error C3306: 'v8::<unnamed-tag>': unnamed class template is not allowed [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3044): error C2236: unexpected 'class' 'v8::IndexFilter'. Did you forget a ';'? [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3044): error C3381: 'v8::IndexFilter' : assembly access specifiers are only available in code compiled with a /clr option [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3049): error C2332: 'enum' : missing tag name [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3049): error C3306: 'v8::<unnamed-tag>': unnamed class template is not allowed [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3049): error C2236: unexpected 'class' 'v8::IntegrityLevel'. Did you forget a ';'? [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3049): error C3381: 'v8::IntegrityLevel' : assembly access specifiers are only available in code compiled with a /clr option [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3500): error C2989: 'v8::Object' : class template has already been declared as a non-class template [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+          c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(88) : see declaration of 'v8::Object'
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3530): error C2989: 'v8::Array' : class template has already been declared as a non-class template [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+          c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(67) : see declaration of 'v8::Array'
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3826): error C2332: 'enum' : missing tag name [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3826): error C2236: unexpected 'class' 'v8::ConstructorBehavior'. Did you forget a ';'? [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3826): error C3381: 'v8::ConstructorBehavior' : assembly access specifiers are only available in code compiled with a /clr option [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3826): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3826): error C2143: syntax error : missing ';' before '}' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3826): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3831): error C2504: 'v8::Object' : base class undefined [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3838): error C2061: syntax error : identifier 'FunctionCallback' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3840): error C2059: syntax error : ')' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3840): error C2143: syntax error : missing ')' before ';' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3844): error C2061: syntax error : identifier 'FunctionCallback' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3844): error C2059: syntax error : ')' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3844): error C2143: syntax error : missing ')' before ';' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3854): error C2059: syntax error : 'return' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3854): error C2238: unexpected token(s) preceding ';' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3859): error C2146: syntax error : missing ';' before identifier 'Call' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3865): error C2270: 'GetName' : modifiers not allowed on nonmember functions [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3873): error C2270: 'GetInferredName' : modifiers not allowed on nonmember functions [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3879): error C2270: 'GetDebugName' : modifiers not allowed on nonmember functions [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3885): error C2270: 'GetDisplayName' : modifiers not allowed on nonmember functions [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3891): error C2270: 'GetScriptLineNumber' : modifiers not allowed on nonmember functions [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3896): error C2270: 'GetScriptColumnNumber' : modifiers not allowed on nonmember functions [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3901): error C2270: 'IsBuiltin' : modifiers not allowed on nonmember functions [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3906): error C2270: 'ScriptId' : modifiers not allowed on nonmember functions [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3912): error C2270: 'GetBoundFunction' : modifiers not allowed on nonmember functions [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3914): error C2270: 'GetScriptOrigin' : modifiers not allowed on nonmember functions [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3918): error C2059: syntax error : 'private' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3919): error C2059: syntax error : ')' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3931): error C2504: 'Object' : base class undefined [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3939): error C2504: 'Object' : base class undefined [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3945): error C2143: syntax error : missing ';' before '<' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3945): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3945): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3945): error C2238: unexpected token(s) preceding ';' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3946): error C2143: syntax error : missing ';' before '<' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3946): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3946): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3947): error C2238: unexpected token(s) preceding ';' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3952): error C2143: syntax error : missing ';' before '<' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3952): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3952): error C2238: unexpected token(s) preceding ';' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3958): error C2061: syntax error : identifier 'Local' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3959): error C2143: syntax error : missing ';' before '<' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3959): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3960): error C2238: unexpected token(s) preceding ';' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3962): error C2061: syntax error : identifier 'Local' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3963): error C2143: syntax error : missing ';' before '<' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3963): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3964): error C2238: unexpected token(s) preceding ';' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3966): error C2061: syntax error : identifier 'Value' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3970): error C2061: syntax error : identifier 'Value' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3980): error C2143: syntax error : missing ';' before '<' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3980): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3980): error C2238: unexpected token(s) preceding ';' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3981): error C2143: syntax error : missing ';' before '<' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3981): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3982): error C2238: unexpected token(s) preceding ';' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3985): error C2143: syntax error : missing ';' before '<' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3985): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3985): error C2238: unexpected token(s) preceding ';' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3986): error C2143: syntax error : missing ';' before '<' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3986): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3987): error C2238: unexpected token(s) preceding ';' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3999): error C2143: syntax error : missing ';' before '<' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3999): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(3999): error C2238: unexpected token(s) preceding ';' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(4006): error C2061: syntax error : identifier 'Value' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(4012): error C2061: syntax error : identifier 'Value' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(4049): error C2061: syntax error : identifier 'Local' [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(4049): error C2535: 'PropertyDescriptor::PropertyDescriptor(void)' : member function already defined or declared [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]
+          c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(4046) : see declaration of 'PropertyDescriptor::PropertyDescriptor'
+c:\users\filippo\.node-gyp\8.11.4\include\node\v8.h(4049): fatal error C1003: error count exceeds 100; stopping compilation [c:\nodeprj\glacweb\node_modules\ursa\build\ursaNative.vcxproj]

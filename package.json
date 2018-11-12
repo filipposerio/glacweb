@@ -1,0 +1,23 @@
+{
+  "name": "glacweb",
+  "version": "0.0.1",
+  "description": "glacweb app",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^3.21.2",
+    "mariadb": "^0.7.0",
+    "mssql": "^4.1.0",
+    "node-rsa": "^1.0.1",
+    "pg": "^7.6.1",
+    "serialport": "^6.2.1",
+    "soap": "^0.11.4",
+    "socket.io": "^2.1.0",
+    "ursa-optional": "^0.9.6"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC"
+}

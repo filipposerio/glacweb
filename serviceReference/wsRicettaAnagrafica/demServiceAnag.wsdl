@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tns="http://serviceanag.wsdl.dem.sanita.finanze.it" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ricevutans="http://serviceanagricevuta.xsd.dem.sanita.finanze.it" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:richiestans="http://serviceanagrichiesta.xsd.dem.sanita.finanze.it" targetNamespace="http://serviceanag.wsdl.dem.sanita.finanze.it" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation>Versione 1.2</wsdl:documentation>
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified">
+      <xsd:import schemaLocation="ServiceAnagRichiesta.xsd" namespace="http://serviceanagrichiesta.xsd.dem.sanita.finanze.it" />
+    </xsd:schema>
+    <xsd:schema elementFormDefault="qualified">
+      <xsd:import schemaLocation="ServiceAnagRicevuta.xsd" namespace="http://serviceanagricevuta.xsd.dem.sanita.finanze.it" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ricevuta">
+    <wsdl:part name="ServiceAnagRicevuta" element="ricevutans:ServiceAnagRicevuta" />
+  </wsdl:message>
+  <wsdl:message name="richiesta">
+    <wsdl:part name="ServiceAnagRichiesta" element="richiestans:ServiceAnagRichiesta" />
+  </wsdl:message>
+  <wsdl:portType name="serviceAnagPT">
+    <wsdl:operation name="serviceAnag">
+      <wsdl:input message="tns:richiesta" />
+      <wsdl:output message="tns:ricevuta" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="serviceAnagBinding" type="tns:serviceAnagPT">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="serviceAnag">
+      <soap:operation soapAction="http://serviceanag.wsdl.dem.sanita.finanze.it/ServiceAnag" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="demServiceAnag">
+    <wsdl:port name="demServiceAnag" binding="tns:serviceAnagBinding">
+      <soap:address location="http://localhost:9080/DemRicettaServiceAnagServicesWeb/services/demServiceAnag" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

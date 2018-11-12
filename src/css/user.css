@@ -1,0 +1,29 @@
+.read {
+  margin: 1em 1em 1em 1em;
+}
+.read table, th, td {
+    border: 1px solid gray;
+    border-collapse: collapse;
+}
+.read-sub {
+  margin: 1em 0em 0em 0em;
+}
+elimina,modifica:hover {
+  cursor: pointer;
+}
+
+.search_wrapper {
+  float: left;
+}
+
+.search__input {
+
+  height: 30px;
+}
+.search__submit {
+  margin: 0;
+  height: 30px;
+  cursor: pointer;
+  font-size: 14px;
+
+}

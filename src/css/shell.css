@@ -1,0 +1,161 @@
+/*
+ * shell.css
+ * Shell styles
+*/
+
+.shell-head, .shell-head-logo, .shell-head-acct,
+.shell-head-search, .shell-main, .shell-main-nav,
+.shell-main-content,
+.shell-foot {
+  position : absolute;
+}
+.shell-head {
+  top    : 0;
+  left   : 0;
+  right  : 0;
+  height : 40px;
+}
+.shell-head-logo {
+  top    : 4px;
+  left   : 8px;
+  height : 32px;
+  width  : 128px;
+}
+  .shell-head-logo h1 {
+    font   : 800 22px/22px Arial, Helvetica, sans-serif;
+    margin : 0;
+  }
+  .shell-head-logo p {
+    font   : 800 10px/10px Arial, Helvetica, sans-serif;
+    margin : 0;
+  }
+
+.shell-head-acct {
+  top           : 4px;
+  right         : 0;
+  width         : 210px;
+  height        : 32px;
+  line-height   : 32px;
+  background    : #888;
+  color         : #fff;
+  text-align    : center;
+  cursor        : pointer;
+  overflow      : hidden;
+  text-overflow : ellipsis;
+}
+.shell-main {
+  top    : 40px;
+  left   : 0;
+  bottom : 40px;
+  right  : 0;
+}
+.shell-main-content,
+.shell-main-nav {
+  top    : 0;
+  left   : 0;
+  bottom : 0;
+}
+.shell-main-nav {
+  width      : 300px;
+  background : #eee;
+  z-index    : 1;
+}
+  .shell-main-nav p {
+    margin-top    : 10px;
+    margin-left   : 10px;
+    color  : blue;
+    bottom : 0;
+  }
+  .shell-main-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+  }
+
+  .shell-main-nav li a {
+      display: block;
+      color: #000;
+      padding: 8px 16px;
+      text-decoration: none;
+  }
+
+  /* Change the link color on hover */
+  .shell-main-nav li a:hover {
+      color: red;
+  }
+  .x-closed .shell-main-nav {
+    width  : 0;
+  }
+.shell-main-content {
+  left  : 300px;
+  right : 0;
+  background : #fff;
+}
+  .x-closed .shell-main-content {
+    left : 0;
+  }
+.shell-foot {
+  bottom : 0;
+  left   : 0;
+  right  : 0;
+  height : 40px;
+}
+.shell-modal {
+  background    : #888;
+}
+h1 {
+  background    : #888;
+  color         : #fff;
+}
+th {
+  font-size: medium;
+  background-color: lightskyblue;
+}
+.xelencoacc-sub {
+  background    : lightgray;
+  color         : #fff;
+}
+.xelencoric-sub {
+  background    : lightslategrey
+}
+.xprestazioni-sub {
+  background    :lightsalmon
+
+}
+.xelencoesami-sub {
+  background:    yellow;
+
+}
+.xesamilab-sub{
+  background:    yellow;
+
+}
+.container_search_p {
+  display: flex;
+}
+.container_search_p > div {
+  flex: 1; /*grow*/
+}
+.container {
+  display: flex;
+}
+.container > div {
+  flex: 1; /*grow*/
+
+}
+
+.itemBanner{
+  font-size: 25px;
+}
+
+.col1 {
+  background-color: lightgray;
+}
+.col2 {
+  background-color: lightgray;
+}
+.col3 {
+  background-color: lightgray;
+}
+.clickElement { cursor:pointer }
