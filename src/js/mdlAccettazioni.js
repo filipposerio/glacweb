@@ -43,11 +43,12 @@ sio.on( 'searchAccettazioniPaziente', ( result ) => {
 
     const event = new CustomEvent('searchAccettazioniPaziente', {bubbles: true, cancelable: true})
     console.log("ritorno della searchAccettazioniPaziente: " + result)
-    if (result.hasOwnProperty('recordset')) {
-      event.data = result.recordset
+
+    if (result.hasOwnProperty('rowCount')) {
+      event.data = result.rows
     }
     else {
-      event.data = result
+      event.data = []
     }
     document.dispatchEvent( event )
 
@@ -79,13 +80,14 @@ const riepilogoContabileAccettazione = ( queryString ) => {
 }
 const searchAccettazioniPaziente = ( queryString ) => {
 
-  console.log('invio al server la richiesta mdlAccettazioni searchAccettazioniPaziente ' + queryString)
+  console.log('mdlAccettazioni - invio al server la richiesta searchAccettazioniPaziente ' + queryString)
 
    sio.emit( 'searchAccettazioniPaziente', queryString )
 }
 const createAccettazione = ( queryString ) => {
 
-  console.log('invio al server la richiesta :create paziente ' )
+  console.log('invio al server la richiesta :create paziente ')
+  console.log(  queryString )
 
    sio.emit( 'createAccettazione',queryString )
 }

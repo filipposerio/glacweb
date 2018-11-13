@@ -160,10 +160,10 @@ document.addEventListener( 'modificaPaziente', ( event ) => {
   });
 });
 
-document.addEventListener( 'selezionePazienteAcc', ( event ) => {
+document.addEventListener( 'selezionePazienteAccNO', ( event ) => {
   console.log('scattata la selezionePazienteAcc')
   const htmlPaziente = `
-      <button class="btn btn-link btn-sm"  id="elencoaccettazioni" ><h6>Paziente selezionato: ${event.data.nominativo}</h6></button>
+      <button class="btn btn-link btn-sm"  id="elencoaccettazioni" ><h6>Paziente selezionato: ${event.data.cognome}</h6></button>
 `;
 const pz  = document.getElementById( "cercapaziente" );
 pz.innerHTML=""
@@ -181,7 +181,7 @@ accettazioni(event.data.idPaziente);
 document.addEventListener( 'selezionePazienteTurno', ( event ) => {
   console.log('scattata la selezionePazienteTurno')
   const htmlPaziente = `
-      <button class="btn btn-link btn-sm"  id="elencoturni" ><h6>Paziente selezionato: ${event.data.nominativo}</h6></button>
+      <button class="btn btn-link btn-sm"  id="elencoturni" ><h6>Paziente selezionato: ${event.data.cognome}</h6></button>
 `;
 const pz  = document.getElementById( "cercapaziente" );
 pz.innerHTML=""
@@ -200,7 +200,7 @@ turni();
 document.addEventListener( 'selezionePazienteCertificatiOld', ( event ) => {
   console.log('scattata la selezionePazienteCertificati')
   const htmlPaziente = `
-      <button class="btn btn-link btn-sm"  id="elencocertificati" ><h6>Paziente selezionato: ${event.data.nominativo}</h6></button>
+      <button class="btn btn-link btn-sm"  id="elencocertificati" ><h6>Paziente selezionato: ${event.data.cognome}</h6></button>
 `;
 const pz  = document.getElementById( "cercapaziente" );
 pz.innerHTML=""
@@ -278,8 +278,6 @@ document.addEventListener( 'updatepaziente', ( event ) => {
   mdlPazienti.searchPazientiCognome('');
 });
 
-
-
 const nuovo = () => {
   event.preventDefault();
   console.log("Pazienti - function nuovo: chiamo la nuovo paziente e verifico utente connesso: " + localStorage.username);
@@ -328,7 +326,6 @@ const nuovo = () => {
       <input id="telefono"  class="form-control"  type="text" name="telefono" maxlength="50" required>
       <label for="email">Contatti email</label><br>
       <input id="email"  class="form-control"  type="text" name="email" maxlength="50" required>
-
         <input type='submit'></input>
       </p>
     </form>
@@ -386,7 +383,7 @@ const list = ( rows ) => {
   console.log("Pazienti - function list: costruisco lista pazienti ")
   console.log( rows )
   console.log( rows[0])
-  console.log( rows[0].cognome)
+  //console.log( rows[0].cognome)
 
 
   const html = `
@@ -463,7 +460,6 @@ const list = ( rows ) => {
 
     //for (let mmm = 0, row; row = table.rows[mmm]; mmm++) {
       var pppp = 0;
-      
         //for (let mmm = 0, row; row = table.rows[mmm]; mmm++) {
         for (let row of tableRows) {
         row.addEventListener('click', ( event ) => {
@@ -495,7 +491,6 @@ const list = ( rows ) => {
          }
          console.log("verifica obj Paziente 0 :")
          console.log(objPaziente)          
-
           /*objPaziente.nome = rowCols[1].innerText 
           objPaziente.cognome =  rowCols[2].innerText
           objPaziente.paziente = rowCols[1].innerText + " " + rowCols[2].innerText
@@ -531,7 +526,7 @@ const list = ( rows ) => {
                   }
                   case "certificazioni" : {
                     const htmlPaziente = `
-                    <button class="btn btn-link btn-sm"  id="elencocertificati" ><h6>Paziente selezionato: ${objPaziente.nominativo}</h6></button>
+                    <button class="btn btn-link btn-sm"  id="elencocertificati" ><h6>Paziente selezionato: ${objPaziente.cognoem}</h6></button>
                     `;
                     const pz  = document.getElementById( "cercapaziente" );
                     pz.innerHTML=""
@@ -584,7 +579,6 @@ const list = ( rows ) => {
 };
 
 
-
 const search = ( event ) => {
   console.log('search pazienti' +  event.target.name.value );
   event.preventDefault();
@@ -616,9 +610,6 @@ const certificatiNew = () => {
   event.data=  objPaziente
   document.dispatchEvent( event )
 };
-
-
-
 
 
 

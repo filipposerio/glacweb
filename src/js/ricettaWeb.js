@@ -222,6 +222,11 @@ const searchweb = ( event ) => {
   objRicetta.idAccettazione = localStorage.idAccettazione;
   objRicetta.idPaziente = localStorage.idPaziente;
   objRicetta.pincode = localStorage.pincode;
+  objRicetta.codregioneerogatore = localStorage.codregioneerogatore;
+  objRicetta.codaslerogatore = localStorage.codaslerogatore;
+  objRicetta.codssaerogatore = localStorage.codssaerogatore;
+  objRicetta.utenteerogatore = localStorage.utenteerogatore;
+  objRicetta.pwerogatore = localStorage.pwerogatore;
 
   model.searchRicettaWeb( objRicetta);
 

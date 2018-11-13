@@ -16,6 +16,7 @@ import * as esame   from './esamiRicetta.js';
 Body module
 */
 let userID;
+let objPaziente;
 // Module variables
 
 const chiusuraAccettazioneHTML = `
@@ -87,7 +88,26 @@ const accettazioneHTML = `
 */
 
 
-
+document.addEventListener( 'selezionePazienteAcc', ( event ) => {
+  event.preventDefault;
+  console.log('scattata la selezionePazienteAcc')
+  const htmlPaziente = `
+      <button class="btn btn-link btn-sm"  id="elencoaccettazioni" ><h6>Paziente selezionato: ${event.data.cognome}</h6></button>
+`;
+const pz  = document.getElementById( "cercapaziente" );
+pz.innerHTML=""
+const dtl  = document.getElementById( "dtlPazienti" );
+dtl.innerHTML=""
+//const info_ricette  = document.getElementById( "info_ricetta" );
+//info_ricette.innerHTML = ''
+const info_paziente  = document.getElementById( "info_paziente" );
+info_paziente.innerHTML = htmlPaziente
+const btn_accettazioni  = document.getElementById( "elencoaccettazioni" );
+btn_accettazioni.addEventListener ('click', accettazioni, false);
+objPaziente = event.data
+console.log(document)
+initModule( document.querySelector('.read-sub') );
+});
 
 
 document.addEventListener( 'totaleRicetteAccettazione', ( event ) => {
@@ -184,7 +204,7 @@ document.addEventListener( 'modificaaccettazione', ( event ) => {
 document.addEventListener( 'createaccettazione', ( event ) => {
   console.log("ritorno della createaccettazione");
   console.log("chiamo la searchAccettazioniPazienti......" );
-  mdlAccettazioni.searchAccettazioniPaziente( localStorage.idPaziente );
+  mdlAccettazioni.searchAccettazioniPaziente( objPaziente.idanagrafica );
 });
 
 document.addEventListener( 'searchAccettazioniPaziente', ( event ) => {
@@ -328,7 +348,7 @@ const nuovo = () => {
         event.preventDefault();
         let objAccettazione ={};
         objAccettazione.dataAccettazione = form.dataAccettazione.value;
-        objAccettazione.idPaziente = localStorage.idPaziente;
+        objAccettazione.idanagrafica = objPaziente.idanagrafica;
         objAccettazione.idErogatore = 1;
         console.log(form.dataAccettazione.value);
         mdlAccettazioni.createAccettazione(objAccettazione);
@@ -377,12 +397,12 @@ const list = ( rows ) => {
   </thead>
   <tbody>
       ${rows.map(row => `
-        <tr id=${row.IDACCETTAZIONE}  >
+        <tr id=${row.idaccettazione}  >
           <td><p><sel id="sel">Seleziona</sel></p></td>
-          <td ><p>${row.IDACCETTAZIONE}</p></td>
-          <td ><p>${row.DATAACCETTAZIONE}</p></td>
-          <td style="forecolor:grey;"><p><b>${row.TOTALELORDO}</b></p></td>
-          <td style="forecolor:grey;"><p><b>${row.TOTALENETTO}</b></p></td>
+          <td ><p>${row.idaccettazione}</p></td>
+          <td ><p>${row.dataaccettazione}</p></td>
+          <td style="forecolor:grey;"><p><b>${row.totalelordo}</b></p></td>
+          <td style="forecolor:grey;"><p><b>${row.totalenetto}</b></p></td>
           <td><p><sel id="del">Elimina accettazione</sel></p></td>
           <td><p><sel id="upd">Modifica</sel></p></td>
         </tr>`
@@ -441,10 +461,11 @@ const list = ( rows ) => {
 
 
 const search = ( event ) => {
-  console.log('search accettazione' +  event.target.name.value );
+  console.log('search accettazioni paziente' +  event.target.name.value );
   event.preventDefault();
-  console.log("chiamo la searchAccettazioniPazienti......" );
-  mdlAccettazioni.searchAccettazioniPaziente( localStorage.idPaziente );
+  let objPaziente = event.data
+  console.log("chiamo la searchAccettazioniPazienti......per idanagrafica=" + objPaziente.idanagrafica);
+  mdlAccettazioni.searchAccettazioniPaziente( objPaziente.idanagrafica );
 
 };
 
@@ -464,14 +485,15 @@ const serializeArray = ( fields ) => {
 
 // Export module initModule
 const initModule = ( container ) => {
-  console.log("initmodule accettazione")
+  console.log("initmodule accettazione " +  objPaziente.idanagrafica)
+  console.log(container)
 
   container.innerHTML = mainHTMLNew;
   //const form = document.forms.search;
   //form.addEventListener ('submit', search, false);
   //document.getElementById('info').innerHTML = ''
 
-  mdlAccettazioni.searchAccettazioniPaziente( localStorage.idPaziente );
+  mdlAccettazioni.searchAccettazioniPaziente( objPaziente.idanagrafica );
 };
 
 

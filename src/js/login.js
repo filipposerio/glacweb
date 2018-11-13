@@ -55,10 +55,18 @@ document.addEventListener( 'oklogin', ( event ) => {
     console.log(event.data[0].ragionesociale)
     console.log("Login - event okLogin: numero righe trovate " + event.data.length)
     localStorage.username = document.getElementById('username').value;
-    localStorage.ragionesociale = event.RAGIONESOCIALE;
-    localStorage.indirizzo = event.INDIRIZZO;
-    localStorage.comune = event.data.COMUNE;
-    localStorage.telefono = event.data.TELEFONO;
+    localStorage.ragionesociale = event.ragionesociale;
+    localStorage.indirizzo = event.indirizzo;
+    localStorage.comune = event.data.comune;
+    localStorage.telefono = event.data.telefono;
+    localStorage.telefono = event.data.telefono;
+    localStorage.pincode = event.data.dempcode;
+    localStorage.codregioneerogatore = '190'
+    localStorage.codaslerogatore = '206'
+    localStorage.codssaerogatore = event.data.demssa;
+    localStorage.utenteerogatore = event.data.demusr;
+    localStorage.pwerogatore = event.data.dempw;
+    
     console.log("ragione sociale : " + localStorage.ragionesociale)
     console.log(" username: " + localStorage.username);
     initModule(document.getElementById('spa'));
