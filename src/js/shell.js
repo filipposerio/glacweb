@@ -7,7 +7,7 @@ import * as turno from './turno.js';
 // Module variables
 const main_html = `
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;" >
-<a class="navbar-brand" href="#">GlacWeb ver.2.0.0</a>
+<a class="navbar-brand" href="#">GlacWeb ver.2.0.0 pg</a>
   <div class="navbar-nav" style="background-color: #e3f2fd;" ></div-->
 </nav>
 <div align="center" class="display-4 d-print-none" id="sottotitolo"></div>
