@@ -17,6 +17,7 @@ Body module
 */
 let userID;
 let objPaziente;
+let objAccettazione ={}
 // Module variables
 
 const chiusuraAccettazioneHTML = `
@@ -130,10 +131,8 @@ document.addEventListener( 'totaleRicetteAccettazione', ( event ) => {
 });
 
 
-
-
 document.addEventListener( 'selezioneAccettazione', ( event ) => {
-//alert("selezione accettazione")
+alert("selezione accettazione")
   const htmlAccettazione = `
       <button id="acccselezionata" class="btn btn-link btn-sm"><h6>Accettazione N.  ${localStorage.idAccettazione} del ${localStorage.dataAccettazione} </h6> </button>
       <br>
@@ -277,13 +276,16 @@ const confermaAccettazione = (  ) => {
 
 
 const ricetteAccettazione = (  ) => {
-  event.preventDefault();
-  //alert ("passo dalla ricetteAccettazione")
+  
+  console.log ("passo dalla ricetteAccettazione")
   const info_esami  = document.getElementById( "info_esami" );
   info_esami.innerHTML = '';
   //const info_ricetta  = document.getElementById( "info_ricetta" );
   //info_ricetta.innerHTML = '';
-  ricettaweb.initModule( document.querySelector('.elencoacc-sub') );
+  const event = new CustomEvent('elencoRicetteAccettazione', {bubbles: true, cancelable: true})
+  event.data = objAccettazione
+  document.dispatchEvent( event )
+  //ricettaweb.initModule( document.querySelector('.elencoacc-sub') );
 
 };
 
@@ -430,14 +432,16 @@ const list = ( rows ) => {
         switch( event.target.id ) {
           case "sel" : {
             const rowCols = row.getElementsByTagName( "td" );
+
             localStorage.nRicetta =
             localStorage.idAccettazione = row.id;
             localStorage.dataAccettazione= rowCols[2].innerText;
             localStorage.totaleLordo= rowCols[3].innerText;
             localStorage.totaleNetto= rowCols[4].innerText;
             const event = new CustomEvent('selezioneAccettazione', {bubbles: true, cancelable: true})
-            let objAccettazione ={}
-            objAccettazione.idAccettazione =row.id
+            
+            objAccettazione.idaccettazione =row.id
+            objAccettazione.objPaziente = objPaziente;
             event.data=  objAccettazione
             document.dispatchEvent( event )
             break;

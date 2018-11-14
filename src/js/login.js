@@ -51,21 +51,21 @@ document.addEventListener( 'oklogin', ( event ) => {
     event.preventDefault();
     console.log("Login - event okLogin: conservo username appena connesso")
     console.log(event.data)
-    console.log(event.data[0])
-    console.log(event.data[0].ragionesociale)
+    //console.log(event.data[0])
+    //console.log(event.data[0].ragionesociale)
     console.log("Login - event okLogin: numero righe trovate " + event.data.length)
     localStorage.username = document.getElementById('username').value;
-    localStorage.ragionesociale = event.ragionesociale;
-    localStorage.indirizzo = event.indirizzo;
-    localStorage.comune = event.data.comune;
-    localStorage.telefono = event.data.telefono;
-    localStorage.telefono = event.data.telefono;
-    localStorage.pincode = event.data.dempcode;
+    localStorage.ragionesociale = event.data[0].ragionesociale;
+    localStorage.indirizzo = event.data[0].indirizzo;
+    localStorage.comune = event.data[0].comune;
+    localStorage.telefono = event.data[0].telefono;
+    localStorage.telefono = event.data[0].telefono;
+    localStorage.pincode = event.data[0].dempcode;
     localStorage.codregioneerogatore = '190'
     localStorage.codaslerogatore = '206'
-    localStorage.codssaerogatore = event.data.demssa;
-    localStorage.utenteerogatore = event.data.demusr;
-    localStorage.pwerogatore = event.data.dempw;
+    localStorage.codssaerogatore = event.data[0].demssa;
+    localStorage.utenteerogatore = event.data[0].demusr;
+    localStorage.pwerogatore = event.data[0].dempw;
     
     console.log("ragione sociale : " + localStorage.ragionesociale)
     console.log(" username: " + localStorage.username);

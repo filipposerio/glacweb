@@ -255,26 +255,7 @@ sio.on( 'dettaglioBarcode', ( result ) => {
   event.data = result
   document.dispatchEvent( event )
 })
-sio.on( 'searchRicettaWeb', ( result ) => {
-  console.log('client scattata la ricezione searchRicettaWeb ' + result)
-  //alert(result.jsondataPrendiInCaricoResult);
-  if (result.jsondataPrendiInCaricoResult.startsWith('X')) {
-    alert(result.jsondataPrendiInCaricoResult);
-  }
-  else {
-    const res = result.jsondataPrendiInCaricoResult.replace("\\","").replace('," }','}').replace('dataNascitaEstero','dataNascitaEstero1')
-    alert(res);
-    console.log("esito in json......")
-    console.log(res)
-    console.log("fine esito in json......")
-    const resJSON = JSON.parse(res)
-    alert(resJSON.Esito);
-    //const event = new CustomEvent('searchRicettaWeb', {bubbles: true, cancelable: true})
-    //event.data = result
-    //document.dispatchEvent( event )
-  }
 
-})
 
 sio.on( 'lavorati', ( result ) => {
   console.log('client scattata la ricezione socket lavorati ' + result)
@@ -315,12 +296,7 @@ const searchBarcode = ( queryString ) => {
 
    sio.emit( 'lavorati', queryString )
 }
-const searchRicettaWeb = ( queryString ) => {
 
-  console.log('invio al server la richiesta :searchRicettaWeb ' + queryString)
-
-   sio.emit( 'searchRicettaWeb', queryString )
-}
 const searchAccettazioniPaziente1 = ( queryString ) => {
 
   console.log('invio al server la richiesta :searchAccettazioniPaziente1 ' + queryString)
@@ -426,7 +402,6 @@ const riepilogoContabileAccettazione = ( queryString ) => {
 export {
          eliminaTuttiBarcodeLavorati,
          login,
-         searchRicettaWeb,
          searchAccettazioniPaziente1,
          searchPrestazioniRicetta,
          searchEsamiDescrizione,

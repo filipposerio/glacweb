@@ -10,6 +10,7 @@ import * as esami   from './esamiRicetta.js';
 Body module
 */
 let userID;
+let objAccettazionePaziente;
 // Module variables
 const mainHTML = `
 <div align="center" class="display-4">Ricette - Gestione</div>
@@ -89,6 +90,14 @@ const ricettaDemHTML = `
 /*
  Event handlers
 */
+document.addEventListener( 'elencoRicetteAccettazione', ( event ) => {
+  console.log("ricetteWEb scattato evento elencoRicetteAccettazione")
+  
+  objAccettazionePaziente = event.data;
+  console.log("ricetteWEb accettazione n." + objAccettazionePaziente.idaccettazione)
+  console.log("ricetteWEb paziente " + objAccettazionePaziente.objPaziente.idanagrafica)
+  initModule( document.querySelector('.elencoacc-sub') );
+});
 
 
 document.addEventListener( 'aaselezioneRicetta', ( event ) => {
@@ -114,10 +123,10 @@ esamiricetta(localStorage.idRicetta)
 document.addEventListener( 'riepilogoContabileRicetta', ( event ) => {
   console.log("scattata la riepilogoContabileRicetta: " + event.data);
   if (event.data === 'OK' ) {
-    //model.searchRicetteAccettazione( localStorage.idAccettazione );
+    //model.searchRicetteAccettazione( objAccettazionePaziente.idaccettazione );
     const event = new CustomEvent('selezioneAccettazione', {bubbles: true, cancelable: true})
     let objAccettazione ={}
-    objAccettazione.idAccettazione =localStorage.idAccettazione;
+    objAccettazionePaziente.idaccettazione =objAccettazionePaziente.idaccettazione;
     event.data=  objAccettazione
     document.dispatchEvent( event )
   }
@@ -128,8 +137,8 @@ document.addEventListener( 'riepilogoContabileRicetta', ( event ) => {
 document.addEventListener( 'deletericetta', ( event ) => {
   console.log("scattata la deletericetta: " + event.data);
   if (event.data === 'OK' ) {
-    console.log("chiamo la searchRicettePerAccettazione......" );
-    model.searchRicetteAccettazione( localStorage.idAccettazione );
+    console.log("deletericetta chiamo la searchRicettePerAccettazione......" + objAccettazionePaziente.idaccettazione );
+    model.searchRicetteAccettazione( objAccettazionePaziente.idaccettazione );
   }
   else {
     alert("errore salvataggio ricetta!")
@@ -161,7 +170,7 @@ document.addEventListener( 'createricetta', ( event ) => {
   console.log("scattata la createricetta: " + event.data);
   if (event.data === 'OK' ) {
     console.log("chiamo la searchRicettePerAccettazione......" );
-    model.searchRicetteAccettazione( localStorage.idAccettazione );
+    model.searchRicetteAccettazione( objAccettazionePaziente.idaccettazione );
   }
   else {
     alert("errore salvataggio ricetta!")
@@ -208,7 +217,7 @@ const riepilogoricetta = () => {
 const dem = () => {
   document.querySelector( '.elencoric-sub' ).innerHTML = ricettaDemHTML;
   const form = document.forms[ 'searchricette' ];
-  form.cf.value = localStorage.cf;
+  form.cf.value = objAccettazionePaziente.objPaziente.cf;
   form.addEventListener ('submit', searchweb, false);
 };
 
@@ -219,14 +228,15 @@ const searchweb = ( event ) => {
   let objRicetta = {}
   objRicetta.nricetta = event.target.name.value;
   objRicetta.cf = event.target.cf.value;
-  objRicetta.idAccettazione = localStorage.idAccettazione;
-  objRicetta.idPaziente = localStorage.idPaziente;
+  objRicetta.idAccettazione = objAccettazionePaziente.idaccettazione;
+  objRicetta.idPaziente = objAccettazionePaziente.objPaziente.idanagrafica;
   objRicetta.pincode = localStorage.pincode;
   objRicetta.codregioneerogatore = localStorage.codregioneerogatore;
   objRicetta.codaslerogatore = localStorage.codaslerogatore;
   objRicetta.codssaerogatore = localStorage.codssaerogatore;
   objRicetta.utenteerogatore = localStorage.utenteerogatore;
   objRicetta.pwerogatore = localStorage.pwerogatore;
+  //console.log(objRicetta)
 
   model.searchRicettaWeb( objRicetta);
 
@@ -255,8 +265,8 @@ const conferma = () => {
 const nuovo = () => {
   document.querySelector( '.elencoric-sub' ).innerHTML = ricettaHTML;
   const form = document.forms[ 'ricetta' ];
-  //form.idPaziente.value = localStorage.idPaziente
-  //form.idAccettazione.value = localStorage.idAccettazione
+  //form.idPaziente.value = objAccettazionePaziente.objPaziente.idanagrafica
+  //form.idAccettazione.value = objAccettazionePaziente.idaccettazione
   const now = new Date()
 
 
@@ -266,14 +276,17 @@ const nuovo = () => {
   const dStr = now.getFullYear().toString() +"-" + (now.getMonth()+1).toString().padStart(2, '0') + "-" + (now.getDate().toString().padStart(2,'0'))
   form.dataRicetta.value = dStr
   form.addEventListener( 'submit', ( event ) => {
-    console.log("scatta la submit per inserire una nuova ricetta non dematerializzata")
+    console.log("Nuovo ricetta: scatta la submit per inserire una nuova ricetta non dematerializzata")
       let objRicetta = {}
       objRicetta = dm.formToJSON(form)
       'aggiungo elementi non presenti nella form ma necessari alla insert'
 
-      objRicetta.idAccettazione = localStorage.idAccettazione
-      objRicetta.idPaziente = localStorage.idPaziente
-
+      //objRicetta.idAccettazione = objAccettazionePaziente.idaccettazione
+      //objRicetta.idPaziente = objAccettazionePaziente.objPaziente.idanagrafica
+      objRicetta.idaccettazione = objAccettazionePaziente.idaccettazione
+      objRicetta.idanagrafica = objAccettazionePaziente.objPaziente.idanagrafica
+      alert("Nuovo ricettea: " + objRicetta.idaccettazione)
+      alert("Nuovo ricettea: " + objRicetta.idanagrafica)
       console.log(objRicetta);
       event.preventDefault();
 
@@ -336,18 +349,18 @@ const list = ( rows ) => {
       </thead>
       <tbody>
         ${rows.map(row => `
-          <tr id=${row.IDRICETTA}>
+          <tr id=${row.idricetta}>
             <td><p><sel id="sel">Selezione</sel></p></td>
             <td><p><sel id="rpl">Riepilogo contabile</sel></p></td>
-            <td ><p>${row.NRICETTA}</p></td>
-            <td ><p>${row.DATACOMPILAZIONE}</p></td>
-            <td ><p>${row.DATAFRUIZIONE}</p></td>
-            <td style="forecolor:grey;"><p><b>${row.TRICETTA}</b></p></td>
-            <td style="forecolor:grey;"><p><b>${row.TASSISTITO}</b></p></td>
-            <td style="forecolor:grey;"><p><b>${row.TNETTO}</b></p></td>
-            <td ><p>${row.CODESENZIONE}</p></td>
-            <td ><p>${row.SSN}</p></td>
-            <td ><p>${row.ESENTE}</p></td>
+            <td ><p>${row.nricetta}</p></td>
+            <td ><p>${row.datacompilazione}</p></td>
+            <td ><p>${row.datafruizione}</p></td>
+            <td style="forecolor:grey;"><p><b>${row.tricetta}</b></p></td>
+            <td style="forecolor:grey;"><p><b>${row.tassistito}</b></p></td>
+            <td style="forecolor:grey;"><p><b>${row.tnetto}</b></p></td>
+            <td ><p>${row.codesenzione}</p></td>
+            <td ><p>${row.ssn}</p></td>
+            <td ><p>${row.esente}</p></td>
             <td><p><sel id="del">Elimina ricetta</sel></p></td>
             <td><p><sel id="upd">Modifica</sel></p></td>
           </tr>`
@@ -439,7 +452,7 @@ const confermaAccettazione = (  ) => {
   event.preventDefault();
   let objAccettazione ={}
   //objAccettazione.totaleLordo = localStorage.totalePrivato
-  objAccettazione.idAccettazione =localStorage.idAccettazione
+  objAccettazionePaziente.idaccettazione =objAccettazionePaziente.idaccettazione
   //mdlAccettazioni.riepilogoContabileAccettazione(objAccettazione)
 
   mdlAccettazioni.totaleRicette(objAccettazione)
@@ -471,7 +484,8 @@ const initModule = ( container ) => {
   console.log("initmodule ricettaweb aggingi listener search ricetta web")
 
 
-  model.searchRicetteAccettazione( localStorage.idAccettazione );
+  //model.searchRicetteAccettazione( objAccettazionePaziente.idaccettazione );
+  model.searchRicetteAccettazione( objAccettazionePaziente.idaccettazione );
 };
 
 

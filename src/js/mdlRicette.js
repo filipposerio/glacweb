@@ -52,11 +52,11 @@ sio.on( 'searchRicetteAccettazione', ( result ) => {
 
     const event = new CustomEvent('searchRicetteAccettazione', {bubbles: true, cancelable: true})
     console.log("ritorno della searchRicetteAccettazione: " + result)
-    if (result.hasOwnProperty('recordset')) {
-      event.data = result.recordset
+    if (result.rowCount >0) {
+      event.data = result.rows
     }
     else {
-      event.data = result
+      event.data = ""
     }
     document.dispatchEvent( event )
 
@@ -147,7 +147,38 @@ sio.on( 'searchPrestazioniDescrizioneRic', ( result ) => {
     document.dispatchEvent( event )
 })
 
+
+sio.on( 'searchRicettaWeb', ( result ) => {
+  console.log('client scattata la ricezione searchRicettaWeb ' + result)
+  //alert(result.jsondataPrendiInCaricoResult);
+  if (result.jsondataPrendiInCaricoResult.startsWith('X')) {
+    alert(result.jsondataPrendiInCaricoResult);
+  }
+  else {
+    const res = result.jsondataPrendiInCaricoResult.replace("\\","").replace('," }','}').replace('dataNascitaEstero','dataNascitaEstero1')
+    alert(res);
+    console.log("esito in json......")
+    console.log(res)
+    console.log("fine esito in json......")
+    const resJSON = JSON.parse(res)
+    alert(resJSON.Esito);
+    //const event = new CustomEvent('searchRicettaWeb', {bubbles: true, cancelable: true})
+    //event.data = result
+    //document.dispatchEvent( event )
+  }
+
+})
+
+
 // moduli lato client
+
+const searchRicettaWeb = ( queryString ) => {
+
+  console.log('invio al server la richiesta :searchRicettaWeb ' + queryString)
+
+   sio.emit( 'searchRicettaWeb', queryString )
+}
+
 const deleteRicetta = (queryString ) => {
 
   console.log('invio al server la richiesta eliminaRicetta id=' +queryString.idRicetta)
@@ -212,6 +243,7 @@ const riepilogoContabileRicetta = ( queryString ) => {
 }
 // ezport dei moduli lato client
 export {
+  searchRicettaWeb,
   deleteRicetta,
   createRicetta,
   searchRicetteAccettazione,
