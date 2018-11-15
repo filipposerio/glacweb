@@ -89,15 +89,15 @@ document.addEventListener( 'searchEsamiRicetta', ( event ) => {
   }
 });
 
-document.addEventListener( 'searchEsamiDescrizione', ( event ) => {
-  //console.log("passo dalla eventlistener searchEsamiDescrizione... " + event.data)
+document.addEventListener( 'searchEsamiDescrizioneRic', ( event ) => {
+  //console.log("passo dalla eventlistener searchEsamiDescrizioneRic... " + event.data)
   if (event.data != undefined) {
     //console.log("searchEsamiDescrizione creo lista da elenco" + event.data)
 
       list( event.data );
   }
   else {
-    console.log("searchEsamiDescrizione event.data undefined!!!!!!")
+    console.log("searchEsamiDescrizioneRic event.data undefined!!!!!!")
     message.show("Nessun esame presente.")
     list([])
   }

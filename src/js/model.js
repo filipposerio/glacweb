@@ -102,11 +102,11 @@ sio.on( 'searchEsamiPrestazione', ( result ) => {
 
     const event = new CustomEvent('searchEsamiPrestazione', {bubbles: true, cancelable: true})
     console.log("ritorno della searchEsamiPrestazione: " + result)
-    if (result.hasOwnProperty('recordset')) {
-      event.data = result.recordset
+    if (result.rowCount) {
+      event.data = result.rows
     }
     else {
-      event.data = result
+      event.data = ""
     }
     document.dispatchEvent( event )
 
@@ -121,17 +121,20 @@ sio.on( 'searchEsamiPrestazione', ( result ) => {
 
 
 sio.on( 'searchEsamiDescrizione', ( result ) => {
-  //console.log("ritorno della searchEsamiDescrizione: " + result)
+  console.log("ritorno della searchEsamiDescrizione: " + result)
 
   //alert(result)
 
     const event = new CustomEvent('searchEsamiDescrizione', {bubbles: true, cancelable: true})
-    //console.log("ritorno della searchEsamiDescrizione: " + result)
-    if (result.hasOwnProperty('recordset')) {
-      event.data = result.recordset
+    console.log("ritorno della searchEsamiDescrizione: " + result.rowCount)
+    
+    if (result.rowCount ) {
+      console.log("ritorno della " + result.rows)
+      event.data = result.rows
     }
     else {
-      event.data = result
+      console.log("ritorno della result.rows vuoto")
+      event.data = ""
     }
     document.dispatchEvent( event )
 
@@ -156,17 +159,17 @@ sio.on( 'searchPrestazioniDescrizioneAcc', ( result ) => {
 })
 
 sio.on( 'searchPrestazioniDescrizioneConf', ( result ) => {
-  console.log("ritorno della searchPrestazioniDescrizioneConf: " )
+  console.log("model ritorno della searchPrestazioniDescrizioneConf: " )
 
   //alert(result)
 
     const event = new CustomEvent('searchPrestazioniDescrizioneConf', {bubbles: true, cancelable: true})
-    console.log("ritorno della searchPrestazioniDescrizioneConf: " )
-    if (result.hasOwnProperty('recordset')) {
-      event.data = result.recordset
+    
+    if (result.rowCount) {
+      event.data = result.rows
     }
     else {
-      event.data = result
+      event.data = ""
     }
     document.dispatchEvent( event )
 

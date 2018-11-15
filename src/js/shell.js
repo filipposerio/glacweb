@@ -17,7 +17,6 @@ const main_html = `
 
 
 const navbar_html = `
-
 <a href="#anagrafica" id="anagrafica" class="shell-nav-li nav-item nav-link">Anagrafica</a>
 <a id="turni" class="shell-nav-li nav-item nav-link" href="#">Gestione Turni Dialisi</a>
 <a href="#accettazioni" id="accettazioni" class="shell-nav-li nav-item nav-link">Accettazioni</a>

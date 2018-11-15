@@ -53,9 +53,10 @@ document.addEventListener( 'searchEsamiPrestazione', ( event ) => {
 });
 
 document.addEventListener( 'searchEsamiDescrizione', ( event ) => {
-  //console.log("passo dalla eventlistener searchEsamiDescrizione... " + event.data)
+  console.log("passo dalla eventlistener searchEsamiDescrizione... ")
+  console.log(event.data)
   if (event.data != undefined) {
-    //console.log("searchEsamiDescrizione creo lista da elenco" + event.data)
+    console.log("searchEsamiDescrizione creo lista da elenco" )
 
     listEsamiiLab( event.data );
   }
@@ -68,15 +69,14 @@ document.addEventListener( 'searchEsamiDescrizione', ( event ) => {
 });
 
 document.addEventListener( 'searchPrestazioniDescrizioneConf', ( event ) => {
-  //console.log("passo dalla eventlistener searchPrestazioniDescrizione... " + event.data)
+  console.log("passo dalla eventlistener searchPrestazioniDescrizione... ")
+  console.log(event.data)
   if (event.data != undefined) {
-    //console.log("searchPrestazioniDescrizione creo lista da elenco" + event.data)
-
-    listPrestazioniLab( event.data );
+    console.log("searchPrestazioniDescrizione creo lista da elenco" )
+    listPrestazioniLab(event.data);
   }
   else {
     console.log("searchPrestazioniDescrizione event.data undefined!!!!!!")
-
     message.show("Nessun esame presente.")
     listPrestazioniLab([])
   }
@@ -102,14 +102,14 @@ const listEsamiiLab = ( rows ) => {
       <th scope="col">Num Prest</th>
     </tr>
     ${rows.map(row => `
-      <tr id=${row.IDESAME} class="table table-sm">
-        <td ><p>${row.NUM_ESAME}</p></td>
-        <td ><p>${row.DESCRIZIONE}</p></td>
-        <td ><p>${row.UMISURA}</p></td>
-        <td ><p>${row.RANGEM}</p></td>
-        <td ><p>${row.RANGEF}</p></td>
-        <td ><p>${row.RANGEB}</p></td>
-        <td ><p>${row.NUM_PREST}</p></td>
+      <tr id=${row.idesame} class="table table-sm">
+        <td ><p>${row.num_esame}</p></td>
+        <td ><p>${row.descrizione}</p></td>
+        <td ><p>${row.umisura}</p></td>
+        <td ><p>${row.rangem}</p></td>
+        <td ><p>${row.rangef}</p></td>
+        <td ><p>${row.rangeb}</p></td>
+        <td ><p>${row.num_prest}</p></td>
       </tr>`
     ).join('')}
   </table>
@@ -123,7 +123,7 @@ message.show(html)
 
 
 const listPrestazioniLab = ( rows ) => {
-  //console.log("funzione list: " + rows)
+  console.log("funzione list: " + rows)
   const html = `
   <p>
   <h6 align="center"> Elenco prestazioni erogate dal laboratorio (${rows.length} righe)</h6>
@@ -140,17 +140,16 @@ const listPrestazioniLab = ( rows ) => {
       <th scope="col">Tariffa privato</th>
     </tr>
     ${rows.map(row => `
-      <tr id=${row.IDPRESTAZIONE} >
+      <tr id=${row.idprestazione} >
         <td ><p><sel id="sel">Seleziona</sel></p></td>
-        <td ><p>${row.NUMEROESAMI}</p></td>
-        <td ><p>${row.CODICEPRESTAZIONESSN}</p></td>
-        <td ><p>${row.NOTE}</p></td>
-        <td ><p>${row.DESCRIZIONE}</p></td>
-        <td ><p>${row.CODICEBRANCA}</p></td>
-        <td ><p>${row.NUM_PREST}</p></td>
-        <td ><p>${row.TARIFFACONVENZIONATO}</p></td>
-        <td ><p>${row.TARIFFAPRIVATO}</p></td>
-
+        <td ><p>${row.numeroesami}</p></td>
+        <td ><p>${row.codiceprestazionessn}</p></td>
+        <td ><p>${row.note}</p></td>
+        <td ><p>${row.descrizione}</p></td>
+        <td ><p>${row.codicebranca}</p></td>
+        <td ><p>${row.num_prest}</p></td>
+        <td ><p>${row.tariffaconvenzionato}</p></td>
+        <td ><p>${row.tariffaprivato}</p></td>
       </tr>`
     ).join('')}
   </table>
