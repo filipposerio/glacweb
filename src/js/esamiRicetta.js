@@ -130,10 +130,10 @@ const listEsamiRicetta = ( rows ) => {
     </thead>
     <tbody>
     ${rows.map(row => `
-      <tr id=${row.IDESAMEPAZIENTE}  >
-        <td ><p>${row.DESCRIZIONE}</p></td>
-        <td ><p>${row.CODICEPRESTAZIONESSN}</p></td>
-        <td ><p>${row.TESAME}</p></td>
+      <tr id=${row.idesamepaziente}  >
+        <td ><p>${row.descrizione}</p></td>
+        <td ><p>${row.codiceprestazionessn}</p></td>
+        <td ><p>${row.tesame}</p></td>
         <td><p><sel id="del">Elimina</sel></p></td>
         <td><p><sel id="upd">Modifica</sel></p></td>
       </tr>`

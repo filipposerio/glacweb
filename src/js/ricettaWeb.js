@@ -12,6 +12,25 @@ Body module
 let userID;
 let objAccettazionePaziente;
 // Module variables
+
+
+const mainCardHTML =`
+<div class="container">
+<div class="row hidden-md-up">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-block">
+        <h4 class="card-title">Card title 1</h4>
+        <h6 class="card-subtitle text-muted">Support card subtitle</h6>
+        <p class="card-text p-y-1">Some quick example text to build on the card title .</p>
+        <a href="#" class="card-link">link</a>
+        <a href="#" class="card-link">Second link</a>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  `
 const mainHTML = `
 <div align="center" class="display-4">Ricette - Gestione</div>
 
@@ -151,7 +170,7 @@ document.addEventListener( 'searchRicetteAccettazione', ( event ) => {
   //(typeof image_array !== 'undefined' && image_array.length > 0)
   if (typeof event.data != 'undefined' && event.data.length > 0) {
     console.log("searchRicetteAccettazione creo lista da elenco" + event.data)
-      list( event.data );
+      listCard( event.data );
   }
   else {
     console.log("searchRicetteAccettazione event.data undefined!!!!!!")
@@ -311,6 +330,174 @@ const show = ( data ) => {
 
   });
 
+};
+
+
+const listCard = ( rows ) => {
+  console.log("funzione list")
+
+  console.log(rows)
+  //console.log("idRicetta prima riga: "  + rows[0].idRicetta)
+  const html =`
+  <p>
+  <!--button class="btn-link btn-sm" id="elencoricette" >Ricette</button>
+  <button class="btn-link btn-sm" id="confermaaccettazione" >Concludi accettazione</button-->
+  <br>
+  <div class="container"> 
+  <button id="dem" class="btn-xs btn-link"  >Aggiungi una Ricetta dematerializata </button>
+  <button id="nodem" class="btn-xs btn-link" >Aggiungi una Ricetta non dematerializzata </button>
+  <br>
+  <br>
+  <!--h6 align="center"> Elenco ricette della accettazione </h6--> 
+
+${rows.map(row => `
+<br><br>
+<div id=${row.idricetta} class="row hidden-md-up">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-block" style="background-color:lightgray ">
+        <h4 class="card-title">N. Ricetta: ${row.nricetta}</h4>
+        <h6 class="card-subtitle text-muted">${row.datacompilazione}</h6>
+        <p class="card-text p-y-1"> Fruita il:${row.fruizione} SSN(S/N):${row.ssn} Esente (S/N):${row.esente} </p>
+        <a href="#" class="card-link">Seleziona</a>
+        <a href="#" class="card-link">Modifica</a>  
+        <a href="#" class="card-link">Eimina</a>
+      </div>
+    </div>
+  </div>
+  </div>
+  `
+  ).join('')}
+  
+  </div>
+ 
+  `
+  const htmlold = `
+    <p>
+    <!--button class="btn-link btn-sm" id="elencoricette" >Ricette</button>
+    <button class="btn-link btn-sm" id="confermaaccettazione" >Concludi accettazione</button-->
+    <br>
+    <button id="dem" class="btn-xs btn-link"  >Aggiungi una Ricetta dematerializata </button>
+    <button id="nodem" class="btn-xs btn-link" >Aggiungi una Ricetta non dematerializzata </button>
+    <br>
+    <!--h6 align="center"> Elenco ricette della accettazione </h6-->
+    <fieldset>
+    <table id="ricetteList"  class="table table-sm" style="font-size:80%;">
+    <thead>
+      <tr >
+        <th scope="col">#</th>
+        <th scope="col">#</th>
+        <th scope="col">N. Ricetta</th>
+        <th scope="col">Data di compilazione</th>
+        <th scope="col">Data di fruizione</th>
+        <th scope="col">TRICETTA</th>
+        <th scope="col">TASSITITO</th>
+        <th scope="col">TNETTO</th>
+        <th scope="col">Esenzione</th>
+        <th scope="col">SSN (S/N)</th>
+        <th scope="col">Esente (S/N)</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+        ${rows.map(row => `
+          <tr id=${row.idricetta}>
+            <td><p><sel id="sel">Selezione</sel></p></td>
+            <td><p><sel id="rpl">Riepilogo contabile</sel></p></td>
+            <td ><p>${row.nricetta}</p></td>
+            <td ><p>${row.datacompilazione}</p></td>
+            <td ><p>${row.datafruizione}</p></td>
+            <td style="forecolor:grey;"><p><b>${row.tricetta}</b></p></td>
+            <td style="forecolor:grey;"><p><b>${row.tassistito}</b></p></td>
+            <td style="forecolor:grey;"><p><b>${row.tnetto}</b></p></td>
+            <td ><p>${row.codesenzione}</p></td>
+            <td ><p>${row.ssn}</p></td>
+            <td ><p>${row.esente}</p></td>
+            <td><p><sel id="del">Elimina ricetta</sel></p></td>
+            <td><p><sel id="upd">Modifica</sel></p></td>
+          </tr>`
+        ).join('')}
+      </tbody>
+    </table>
+    </fieldset>
+    </p>
+    <div class="prestazioni-sub"></div>
+  `;
+
+  //document.querySelector( '.elencoacc-sub' ).innerHTML = html;
+
+  document.querySelector( '.elencoric-sub' ).innerHTML = html;
+  const btn_dem  = document.getElementById( "dem" );
+  btn_dem.addEventListener ('click', dem, false);
+  const btn_nodem  = document.getElementById( "nodem" );
+  btn_nodem.addEventListener ('click', nuovo, false);
+  //const btn_ricette  = document.getElementById( "elencoricette" );
+  //btn_ricette.addEventListener ('click', ricetteAccettazione, false);
+  //const btn_conferma  = document.getElementById( "confermaaccettazione" );
+  //btn_conferma.addEventListener ('click', confermaAccettazione, false);
+
+  const table  = document.getElementById( "ricetteList" );
+
+  //const tableRows = table.querySelectorAll(".row");
+  const tableRows =table.getElementsByTagName( "tr" );
+  for( let row of tableRows ) {
+    console.log('stampo intera riga')
+
+    console.log(row.id)
+    row.addEventListener('click', ( event ) => {
+      if (event.target.tagName == 'SEL') {
+        switch( event.target.id ) {
+          case "sel" : {
+            localStorage.idRicetta = row.id;
+            const rowCols = row.getElementsByTagName( "td" );
+            localStorage.nRicetta = rowCols[2].innerText
+            const event = new CustomEvent('selezioneRicetta', {bubbles: true, cancelable: true})
+            let objRicetta ={}
+            objRicetta.idRicetta =row.id
+            objRicetta.nRicetta =localStorage.nRicetta
+
+            localStorage.esenzioneRicetta = (rowCols[8].innerText.length > 0) ? "S" : "N";
+            localStorage.ssn = rowCols[10].innerText == "S" ? "SSN" : "Privato"
+            localStorage.esente = rowCols[11].innerText == "S" ? "Esente" : "Non esente"
+            //alert(rowCols[8].innerText + "  "+localStorage.esenzioneRicetta);
+            event.data=  objRicetta
+            document.dispatchEvent( event )
+            //prestazioni.initModule( document.querySelector('.prestazioni-sub') );
+            break;
+          }
+          case "rpl" : {
+            localStorage.idRicetta = row.id;
+            localStorage.nRicetta = row.getAttribute("nRicetta")
+            console.log("chiamo la prestazioniRicette initmodule per idRIcetta= " +localStorage.idRicetta)
+            const rowCols = row.getElementsByTagName( "td" );
+            let objRicetta ={}
+            objRicetta.idRicetta =row.id
+            objRicetta.codEsenzione = rowCols[8].innerText
+            console.log("cod esenzione: " + objRicetta.codEsenzione)
+            model.riepilogoContabileRicetta(objRicetta );
+            break;
+          }
+          case "esa" : {
+            localStorage.idRicetta = row.id;
+            localStorage.nRicetta = row.getAttribute("nRicetta")
+            console.log("chiamo la esami initmodule")
+            esami.initModule( document.querySelector('.prestazioni-sub') );
+            break;
+          }
+          case "del" : {
+            console.log('eliminare la ricetta '+ row.id)
+            localStorage.idRicetta = row.id;
+            let objRicetta = {}
+            objRicetta.idRicetta = row.id;
+            model.deleteRicetta(objRicetta)
+            break;
+          }
+        }
+      }
+    });
+  }
+  window.scrollTo(0,document.body.scrollHeight);
 };
 
 
@@ -480,6 +667,7 @@ const riepilogoContabile = (ricetta) => {
 const initModule = ( container ) => {
   console.log("initmodule ricettaweb")
   container.innerHTML = mainHTML;
+  
   const form = document.forms.searchricette;
   console.log("initmodule ricettaweb aggingi listener search ricetta web")
 

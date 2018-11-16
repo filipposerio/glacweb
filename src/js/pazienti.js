@@ -70,6 +70,7 @@ const userHTMLTemplate = `
 
 
 const mainHTML = `
+<div class="container-fluid">
 <div id="cercapaziente" >
 <form id="search">
   <div class="form-group">
@@ -87,6 +88,7 @@ const mainHTML = `
   </div>
 </div>
 <div id="dtlPazienti" class="read-sub">  </div>
+</div>
 `;
 
 const headePazientePulitoHTML=`
@@ -241,7 +243,7 @@ document.addEventListener( 'searchCognomeAcc', ( event ) => {
   if (event.data != undefined) {
     console.log("Pazienti - event searchCognomeAcc:  creo lista da elenco" + event.data)
 
-      list( event.data );
+      listCard( event.data );
   }
   else {
     console.log("Pazienti - event searchCognomeAcc:  event.data undefined!!!!!!")
@@ -257,7 +259,7 @@ document.addEventListener( 'searchCognome', ( event ) => {
   //console.log(event.data)
   if (event.data != undefined) {
     console.log("searcPazienti - event searchCognome: creo lista da elenco: n.elementi: " + event.data.length)
-      list( event.data );
+    listCard( event.data );
   }
   else {
     console.log("Pazienti - event searchCognome:  event.data undefined!!!!!!")
@@ -376,6 +378,149 @@ const show = ( data ) => {
   });
 
 };
+
+
+
+
+  const listCard = ( rows ) => {
+  
+    console.log("Pazienti - function list: costruisco lista pazienti ")
+    console.log( rows )
+    console.log( rows[0])
+    //console.log( rows[0].cognome)
+  
+  
+    const html = `
+      <p>
+      <div class="container-fluid">
+      <h6 align="center"> ELENCO PAZIENTI CARD</h6>
+  
+      ${rows.map(row => `
+      <br><br>
+      <div id=${row.idanagrafica} class="row hidden-md-up cardpazienti">
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-block" style="background-color:lightgray ">
+              <h4 class="card-title">${row.cognome} ${row.nome }</h4>
+              <h6 class="card-subtitle text-muted">${row.cf} ${row.datanascita} </h6>              
+              <a href="#" class="card-link">Seleziona</a>
+              <a href="#" class="card-link">Modifica</a>  
+              <a href="#" class="card-link">Eimina</a>
+            </div>
+          </div>
+        </div>
+        </div>
+        `
+        ).join('')}
+        </div>
+ 
+        `
+  
+    //<td ><p><sel id="sel">seleziona</sel></p></td>
+    //<td ><p><sel id="sel"><button class="btn-primary">seleziona</button></sel></p></td>
+      document.querySelector('.read-sub').innerHTML = html;
+      console.log("selezione righe tabella")
+      //const table = document.getElementById( "userList" );
+      //alert(table)
+      //console.log(table);
+          
+      const tableRows =document.getElementsByClassName( "cardpazienti" );
+      console.log("seleziono le card per aggiungere event selezione")
+      console.log(tableRows)
+          //for (let mmm = 0, row; row = table.rows[mmm]; mmm++) {
+          for (let row of tableRows) {
+          row.addEventListener('click', ( event ) => {
+          console.log(event);
+          alert("selezionato paziente: " + row.id)
+          if (event.target.tagName == 'SEL') {
+          //if (event.target.id == 'SEL') {
+            //alert("scattato click bottone")
+            const rowCols = row.getElementsByTagName( "td" );
+
+           console.log("verifica obj Paziente ************** :")
+           for (let h=0; h<rows.length; h++){
+             console.log(row.id+"("+row.id.length+") "+rows[h].idanagrafica+"("+rows[h].idanagrafica.toString().length+")");
+             if (rows[h].idanagrafica == row.id) {
+               console.log("TROVATO");
+               objPaziente = rows[h]
+             }
+  
+           }
+           console.log("verifica obj Paziente 0 :")
+           console.log(objPaziente)          
+ 
+            switch( event.target.id ) {
+              case "sel" : {
+                console.log("scattato select della riga")
+  
+                //alert("scattato select della riga SEL: contesto: " + localStorage.contesto)
+                switch (localStorage.contesto) {
+                    case "dialisi" : {
+                      const event = new CustomEvent('selezionePazienteTurno', {bubbles: true, cancelable: true})                  
+                      event.data=  objPaziente
+                      document.dispatchEvent( event )
+                    break;
+                    }
+                    case "accettazioni" : {
+                      const event = new CustomEvent('selezionePazienteAcc', {bubbles: true, cancelable: true})
+                      event.data=  objPaziente
+                      document.dispatchEvent( event )
+                    break;
+                    }
+                    case "certificazioni" : {
+                      const htmlPaziente = `
+                      <button class="btn btn-link btn-sm"  id="elencocertificati" ><h6>Paziente selezionato: ${objPaziente.cognoem}</h6></button>
+                      `;
+                      const pz  = document.getElementById( "cercapaziente" );
+                      pz.innerHTML=""
+                      const dtl  = document.getElementById( "dtlPazienti" );
+                      dtl.innerHTML=""              
+                      const info_paziente  = document.getElementById( "info_paziente" );
+                      info_paziente.innerHTML = htmlPaziente
+                      const btn_certificati  = document.getElementById( "elencocertificati" );
+                      btn_certificati.addEventListener ('click', certificatiNew, false);
+                      certificatiNew();
+  
+                    break;
+                    }
+                    case "anagrafica" : {
+                      const event = new CustomEvent('modificaPaziente', {bubbles: true, cancelable: true})
+                      console.log(objPaziente)
+                      event.data=  objPaziente
+                      console.log(event.data)
+                      document.dispatchEvent( event )        
+                    break;
+                    }
+  
+                }
+              break;
+            }
+  
+            case "del" : {
+              alert("scattato select della riga DEL: contesto: " + localStorage.contesto)
+              user.destroy( row.id );
+              const parent = row.parentNode;
+              parent.removeChild(row);
+              break;
+            }
+            case "upd" : {
+              alert("scattato select della riga SEL: contesto: " + localStorage.contesto)
+              const event = new CustomEvent('modificaPaziente', {bubbles: true, cancelable: true})
+              event.data=  objPaziente
+              document.dispatchEvent( event )
+              //user.searchById( row.id );
+              break;
+            }
+          }
+        }
+      });
+  
+    }
+    
+   
+    //window.scrollTo(0,document.body.scrollHeight);
+  };
+
 
 
 const list = ( rows ) => {
@@ -585,6 +730,7 @@ const search = ( event ) => {
   const info_paziente  = document.getElementById( "info_paziente" );
   info_paziente.innerHTML = '';
   console.log("chiamo la searchPazienti......: filtro: " +  event.target.name.value);
+  document.querySelector( '.read-sub' ).innerHTML = "Waiting..."
   mdlPazienti.searchPazientiCognomeAcc( event.target.name.value );
 };
 

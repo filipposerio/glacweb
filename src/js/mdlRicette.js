@@ -97,11 +97,11 @@ sio.on( 'searchEsamiRicetta', ( result ) => {
 
     const event = new CustomEvent('searchEsamiRicetta', {bubbles: true, cancelable: true})
     console.log("ritorno della searchEsamiRicetta: " + result)
-    if (result.hasOwnProperty('recordset')) {
-      event.data = result.recordset
+    if (result.rowCount) {
+      event.data = result.rows
     }
     else {
-      event.data = result
+      event.data = ""
     }
     document.dispatchEvent( event )
 
