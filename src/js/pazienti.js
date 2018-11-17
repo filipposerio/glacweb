@@ -19,57 +19,57 @@ let objPaziente = {};
 // Module variables
 
 const userHTMLTemplate = `
-<div class="contanier-fluid" style="margin-left:20px">
+
 <fieldset>
   <legend> Paziente </legend>
   <form id="user">
     <div class="form-group">
     <label for="idanagrafica">Codice paziente</label><br>
-    <input id="idPaziente" class="text-info" type="text" name="idanagrafica" disabled>
+    <input id="idPaziente"  type="text" name="idanagrafica" disabled>
     <br>
       <label for="nome">Nome</label><br>
-      <input id="nome"class="text-info"type="text" name="nome" required>
+      <input id="nome" type="text" name="nome" required>
       <br>
       <label for="cognome">Cognome</label><br>
-      <input id="cognome"  class="text-info" type="text" name="cognome" required>
+      <input id="cognome"  type="text" name="cognome" required>
       <br>
     <label for='comunenascita'>Comune di nascita:</label><br>
-    <input list="comuni"  class="text-info" name='comunenascita' id='comuneNascita' autocomplete=off>
+    <input  list="comuni" name='comunenascita' id='comunenascita' autocomplete=off>
     <datalist id="comuni"></datalist>
     </br>
     </br>
-      <label for='dataNascita'>Data di nascita (AAAA-MM-GG):</label><br>
-      <input id="dataNascita"   type="date" name="datanascita" required>
+      <label for='datanascita'>Data di nascita (AAAA-MM-GG):</label><br>
+      <input id="datanascita"   type="date" name="datanascita" required>
       <br>
       <label for='sesso'>Sesso</label><br>
-      <select id=sesso" name='sesso'>
+      <select id="sesso" name='sesso'>
         <option value="M">M</option>
         <option value="F">F</option>
       </select>
       <br>
       <br>
-      <label for="cf">Codice Fiscale <span><button class="btn" id="calcolaCF1" >Calcola codice fiscale</button><span></label><br>
-      <input id="cf"  class="text-info" type="text" name="cf" maxlength="16" required>
+      <label for="cf">Codice Fiscale </label><br>
+      <input id="cf"  type="text" name="cf" maxlength="16" required>
       <br>
     <label for='comuneResidenza'>Comune di residenza:</label><br>
-    <input list="comuniresidenza"  class="text-info" name='comuneresidenza' id='comuneResidenza' autocomplete=off>
+    <input  list="comuniresidenza" name='comuneresidenza' id='comuneResidenza' autocomplete=off>
     <datalist id="comuniresidenza"></datalist>
     <br>
     <label for="indirizzo">Indirizzo</label><br>
-    <input id="indirizzoResidenza" class="text-info"  type="text" name="indirizzoresidenza" maxlength="100" required><br>
+    <input id="indirizzoResidenza" type="text" name="indirizzoresidenza" maxlength="100" required><br>
     <label for="telefono">Contatti telefonici</label><br>
-    <input id="telefono"  class="text-info"  type="text" name="telefono" maxlength="50" required><br>
+    <input id="telefono" type="text" name="telefono" maxlength="50" required><br>
     <label for="email">Contatti email</label><br>
-    <input id="email"  class="text-info"  type="text" name="email" maxlength="50" required><br>
+    <input id="email" type="text" name="email" maxlength="50" required><br>
     <label for="distrettoasl">Distretto sanitario ASL di appartenenza</label><br>
-    <input id="distrettoasl"  class="text-info" type="text" name="distrettoasl" maxlength="50" required><br>
+    <input id="distrettoasl"  type="text" name="distrettoasl" maxlength="50" required><br>
     <label for="documento">N. Documento (CI, Pat....)</label><br>
-    <input id="documento"  class="text-info"  type="text" name="ndocumento" maxlength="50" required><br>          
+    <input id="documento" type="text" name="ndocumento" maxlength="50" required><br>          
     <input type='submit'></input>
     </p>
   </form>
 </fieldset>
-</div>
+
 `;
 
 
@@ -79,7 +79,7 @@ const mainHTML = `
 <form id="search">
   <div class="form-group">
     <label for="name">Paziente da cercare</label>
-    <input type="text" class="form-control" id="name"  placeholder="digita per cercare il paziente (min 3 caratteri).." minlength>
+    <input type="text" class="form-control" id="name"  placeholder="digita per cercare il paziente (min 3 caratteri)..">
     </div>
     <button type="submit" class="btn-sm btn-link">Cerca paziente</button>
     <button id="nuovoPaziente" type="button" class="btn-sm btn-link" >Registra un nuovo paziente</button>
@@ -125,7 +125,7 @@ info_esami.innerHTML = htmlEsami
 });
 
 document.addEventListener( 'modificaPaziente', ( event ) => {
-  const elencocomuni = comuni.fncomuni();
+  
   const datanascita = event.data.datanascita;
   document.getElementById('headerpaziente' ).innerHTML = headePazientePulitoHTML
   document.querySelector( '.read-sub' ).innerHTML = userHTMLTemplate;
@@ -134,6 +134,8 @@ document.addEventListener( 'modificaPaziente', ( event ) => {
   form.dataNascita.value = event.data.datanascita.substring(0,10)
   const btn_cf = document.getElementById('calcolaCF1')
   btn_cf.addEventListener('click',fncalcolaCF,false);
+  
+  const elencocomuni = comuni.fncomuni();
   const aa = `
       ${elencocomuni.map(row => `
       <option value="${row.Descrizione}" selected></option>`
