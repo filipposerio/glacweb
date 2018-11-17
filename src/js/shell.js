@@ -10,7 +10,7 @@ const main_html = `
 <a class="navbar-brand" href="#">GlacWeb ver.2.0.0 pg</a>
   <div class="navbar-nav"  ></div-->
 </nav>
-<div align="center" class="display-4 d-print-none" id="sottotitolo"></div>
+<div align="center" class="display-5 d-print-none" id="sottotitolo"></div>
 <div class="container-fluid main-content" ></div>
 <div class="shell-modal"></div>
 `;

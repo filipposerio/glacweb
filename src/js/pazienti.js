@@ -19,26 +19,29 @@ let objPaziente = {};
 // Module variables
 
 const userHTMLTemplate = `
+<div class="contanier-fluid" style="margin-left:20px">
 <fieldset>
   <legend> Paziente </legend>
   <form id="user">
     <div class="form-group">
     <label for="idanagrafica">Codice paziente</label><br>
-    <input id="idPaziente" class="form-control" type="text" name="idanagrafica" disabled>
+    <input id="idPaziente" class="text-info" type="text" name="idanagrafica" disabled>
+    <br>
       <label for="nome">Nome</label><br>
-      <input id="nome" class="form-control" type="text" name="nome" required>
+      <input id="nome"class="text-info"type="text" name="nome" required>
+      <br>
       <label for="cognome">Cognome</label><br>
-      <input id="cognome"  class="form-control" type="text" name="cognome" required>
-      </br>
-    <label for='comuneNascita'>Comune di nascita:</label>
-    <input list="comuni"  class="form-control" name='comunenascita' id='comuneNascita' autocomplete=off>
+      <input id="cognome"  class="text-info" type="text" name="cognome" required>
+      <br>
+    <label for='comunenascita'>Comune di nascita:</label><br>
+    <input list="comuni"  class="text-info" name='comunenascita' id='comuneNascita' autocomplete=off>
     <datalist id="comuni"></datalist>
     </br>
     </br>
-      <label for='dataNascita'>Data di nascita (AAAA-MM-GG):</label>
-      <input id="dataNascita" type="date" name="datanascita" required>
+      <label for='dataNascita'>Data di nascita (AAAA-MM-GG):</label><br>
+      <input id="dataNascita"   type="date" name="datanascita" required>
       <br>
-      <label for='sesso'>Sesso</label>
+      <label for='sesso'>Sesso</label><br>
       <select id=sesso" name='sesso'>
         <option value="M">M</option>
         <option value="F">F</option>
@@ -46,26 +49,27 @@ const userHTMLTemplate = `
       <br>
       <br>
       <label for="cf">Codice Fiscale <span><button class="btn" id="calcolaCF1" >Calcola codice fiscale</button><span></label><br>
-      <input id="cf"  class="form-control"  type="text" name="cf" maxlength="16" required>
- 
-    <label for='comuneResidenza'>Comune di residenza:</label>
-    <input list="comuniresidenza"  class="form-control" name='comuneresidenza' id='comuneResidenza' autocomplete=off>
+      <input id="cf"  class="text-info" type="text" name="cf" maxlength="16" required>
+      <br>
+    <label for='comuneResidenza'>Comune di residenza:</label><br>
+    <input list="comuniresidenza"  class="text-info" name='comuneresidenza' id='comuneResidenza' autocomplete=off>
     <datalist id="comuniresidenza"></datalist>
-    </br>
-    <label for="indirizzo">Indirizzo</label>
-    <input id="indirizzoResidenza"  class="form-control"  type="text" name="indirizzoresidenza" maxlength="100" required>
+    <br>
+    <label for="indirizzo">Indirizzo</label><br>
+    <input id="indirizzoResidenza" class="text-info"  type="text" name="indirizzoresidenza" maxlength="100" required><br>
     <label for="telefono">Contatti telefonici</label><br>
-    <input id="telefono"  class="form-control"  type="text" name="telefono" maxlength="50" required>
+    <input id="telefono"  class="text-info"  type="text" name="telefono" maxlength="50" required><br>
     <label for="email">Contatti email</label><br>
-    <input id="email"  class="form-control"  type="text" name="email" maxlength="50" required>
+    <input id="email"  class="text-info"  type="text" name="email" maxlength="50" required><br>
     <label for="distrettoasl">Distretto sanitario ASL di appartenenza</label><br>
-    <input id="distrettoasl"  class="form-control"  type="text" name="distrettoasl" maxlength="50" required>
+    <input id="distrettoasl"  class="text-info" type="text" name="distrettoasl" maxlength="50" required><br>
     <label for="documento">N. Documento (CI, Pat....)</label><br>
-    <input id="documento"  class="form-control"  type="text" name="ndocumento" maxlength="50" required>        
+    <input id="documento"  class="text-info"  type="text" name="ndocumento" maxlength="50" required><br>          
     <input type='submit'></input>
     </p>
   </form>
 </fieldset>
+</div>
 `;
 
 
@@ -75,7 +79,7 @@ const mainHTML = `
 <form id="search">
   <div class="form-group">
     <label for="name">Paziente da cercare</label>
-    <input type="text" class="form-control" id="name"  placeholder="digita per cercare il paziente...">
+    <input type="text" class="form-control" id="name"  placeholder="digita per cercare il paziente (min 3 caratteri).." minlength>
     </div>
     <button type="submit" class="btn-sm btn-link">Cerca paziente</button>
     <button id="nuovoPaziente" type="button" class="btn-sm btn-link" >Registra un nuovo paziente</button>
@@ -290,14 +294,14 @@ const nuovo = () => {
     <form id="user">
       <div class="form-group">
         <label for="nome">Nome</label><br>
-        <input id="nome" class="form-control" type="text" name="nome" required>
+        <input id="nome" class="text-info" type="text" name="nome" required>
         <label for="cognome">Cognome</label><br>
-        <input id="cognome"  class="form-control" type="text" name="cognome" required>
+        <input id="cognome"  class="text-info" type="text" name="cognome" required>
         <input type="date"   name="dataNascita" required>
         <br>
         <br>
         <label for="cf">Codice Fiscale <span><span></label><br>
-        <input id="cf"  class="form-control"  type="text" name="cf" maxlength="16" required>
+        <input id="cf" class="text-info"  type="text" name="cf" maxlength="16" required>
         <button class="form-control" id="calcolaCF1" >Calcola codice fiscale</button>
         <p>Sesso</p>
         <label for='male'>M</label>
@@ -391,33 +395,31 @@ const show = ( data ) => {
   
   
     const html = `
+    <style>
+      #grid { 
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 1vw;
+        }
+      #grid > div {
+        font-size: 2vw;
+        padding: .5em;
+        background: lightgray;
+        text-align: center;
+      }
+     </style>
       <p>
       <div class="container-fluid">
-      <h6 align="center"> ELENCO PAZIENTI CARD</h6>
-  
-      ${rows.map(row => `
-      <br><br>
-      <div id=${row.idanagrafica} class="row hidden-md-up cardpazienti">
-        <div class="col-md-8">
-          <div class="card">
-            <div class="card-block" style="background-color:lightgray ">
-              <h4 class="card-title">${row.cognome} ${row.nome }</h4>
-              <h6 class="card-subtitle text-muted">${row.cf} ${row.datanascita} </h6>              
-              <a href="#" class="card-link">Seleziona</a>
-              <a href="#" class="card-link">Modifica</a>  
-              <a href="#" class="card-link">Eimina</a>
+          <div id="grid">
+          ${rows.map(row => `
+            <div id="${row.idanagrafica}" class="cardpazienti">${row.cognome} ${row.nome }</div>
+            `
+            ).join('')}
             </div>
-          </div>
-        </div>
         </div>
         `
-        ).join('')}
-        </div>
- 
-        `
-  
-    //<td ><p><sel id="sel">seleziona</sel></p></td>
-    //<td ><p><sel id="sel"><button class="btn-primary">seleziona</button></sel></p></td>
+
       document.querySelector('.read-sub').innerHTML = html;
       console.log("selezione righe tabella")
       //const table = document.getElementById( "userList" );
