@@ -353,8 +353,8 @@ const nuovo = () => {
       event.preventDefault();
       mdlPazienti.createPaziente(  dm.formToJSON( form )  );
   });
-  const btn_cf = document.getElementById('calcolaCF1')
-  btn_cf.addEventListener('click',fncalcolaCF,false);
+  //const btn_cf = document.getElementById('calcolaCF1')
+  //btn_cf.addEventListener('click',fncalcolaCF,false);
 
 };
 
