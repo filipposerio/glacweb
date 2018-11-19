@@ -6,6 +6,7 @@ import * as message from './message.js';
 import * as model    from './mdlRicette.js';
 import * as prestazioni    from './prestazioniRicetta.js';
 import * as esami   from './esamiRicetta.js';
+import * as utility   from './utility.js';
 /*
 Body module
 */
@@ -339,38 +340,38 @@ const listCard = ( rows ) => {
   console.log(rows)
   //console.log("idRicetta prima riga: "  + rows[0].idRicetta)
   const html =`
+  <style>
+  #grid { 
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1vw;
+    }
+  #grid > div {
+    font-size: 2vw;
+    padding: .5em;
+    background: lightgray;
+    text-align: center;
+  }
+  </style>
   <p>
   <!--button class="btn-link btn-sm" id="elencoricette" >Ricette</button>
   <button class="btn-link btn-sm" id="confermaaccettazione" >Concludi accettazione</button-->
   <br>
-  <div class="container"> 
+  <div class="container-fluid">
   <button id="dem" class="btn-xs btn-link"  >Aggiungi una Ricetta dematerializata </button>
   <button id="nodem" class="btn-xs btn-link" >Aggiungi una Ricetta non dematerializzata </button>
   <br>
   <br>
   <!--h6 align="center"> Elenco ricette della accettazione </h6--> 
-
-${rows.map(row => `
-<br><br>
-<div id=${row.idricetta} class="row hidden-md-up">
-  <div class="col-md-8">
-    <div class="card">
-      <div class="card-block" style="background-color:lightgray ">
-        <h4 class="card-title">N. Ricetta: ${row.nricetta}</h4>
-        <h6 class="card-subtitle text-muted">${row.datacompilazione}</h6>
-        <p class="card-text p-y-1"> Fruita il:${row.fruizione} SSN(S/N):${row.ssn} Esente (S/N):${row.esente} </p>
-        <a href="#" class="card-link">Seleziona</a>
-        <a href="#" class="card-link">Modifica</a>  
-        <a href="#" class="card-link">Eimina</a>
-      </div>
-    </div>
-  </div>
-  </div>
-  `
-  ).join('')}
+  <p>
   
+      <div id="grid">
+          ${rows.map(row => `
+            <div id="${row.idricetta}" class="cardricette" >N. ${row.nricetta}<br> del ${utility.dataItaliana(row.datacompilazione)} <br>(Fruita il ${utility.dataItaliana(row.datafruizione)})</div>`
+            ).join('')}
+      </div>
   </div>
- 
   `
   const htmlold = `
     <p>
@@ -437,64 +438,36 @@ ${rows.map(row => `
   //const btn_conferma  = document.getElementById( "confermaaccettazione" );
   //btn_conferma.addEventListener ('click', confermaAccettazione, false);
 
-  const table  = document.getElementById( "ricetteList" );
+  //const table  = document.getElementById( "ricetteList" );
 
   //const tableRows = table.querySelectorAll(".row");
-  const tableRows =table.getElementsByTagName( "tr" );
-  for( let row of tableRows ) {
-    console.log('stampo intera riga')
 
-    console.log(row.id)
+  const tableRows =document.getElementsByClassName( "cardricette" );
+  for( let row of tableRows ) {
     row.addEventListener('click', ( event ) => {
-      if (event.target.tagName == 'SEL') {
-        switch( event.target.id ) {
-          case "sel" : {
             localStorage.idRicetta = row.id;
             const rowCols = row.getElementsByTagName( "td" );
-            localStorage.nRicetta = rowCols[2].innerText
-            const event = new CustomEvent('selezioneRicetta', {bubbles: true, cancelable: true})
+            localStorage.nRicetta = ""//rowCols[2].innerText
+            const event1 = new CustomEvent('selezioneRicetta', {bubbles: true, cancelable: true})
             let objRicetta ={}
             objRicetta.idRicetta =row.id
             objRicetta.nRicetta =localStorage.nRicetta
 
-            localStorage.esenzioneRicetta = (rowCols[8].innerText.length > 0) ? "S" : "N";
-            localStorage.ssn = rowCols[10].innerText == "S" ? "SSN" : "Privato"
-            localStorage.esente = rowCols[11].innerText == "S" ? "Esente" : "Non esente"
+            localStorage.esenzioneRicetta =""// (rowCols[8].innerText.length > 0) ? "S" : "N";
+            localStorage.ssn = ""//rowCols[10].innerText == "S" ? "SSN" : "Privato"
+            localStorage.esente = ""//rowCols[11].innerText == "S" ? "Esente" : "Non esente"
             //alert(rowCols[8].innerText + "  "+localStorage.esenzioneRicetta);
-            event.data=  objRicetta
-            document.dispatchEvent( event )
+            event1.data=  objRicetta
+            document.dispatchEvent( event1 )
             //prestazioni.initModule( document.querySelector('.prestazioni-sub') );
-            break;
-          }
-          case "rpl" : {
-            localStorage.idRicetta = row.id;
-            localStorage.nRicetta = row.getAttribute("nRicetta")
-            console.log("chiamo la prestazioniRicette initmodule per idRIcetta= " +localStorage.idRicetta)
-            const rowCols = row.getElementsByTagName( "td" );
-            let objRicetta ={}
-            objRicetta.idRicetta =row.id
-            objRicetta.codEsenzione = rowCols[8].innerText
-            console.log("cod esenzione: " + objRicetta.codEsenzione)
-            model.riepilogoContabileRicetta(objRicetta );
-            break;
-          }
-          case "esa" : {
-            localStorage.idRicetta = row.id;
-            localStorage.nRicetta = row.getAttribute("nRicetta")
-            console.log("chiamo la esami initmodule")
-            esami.initModule( document.querySelector('.prestazioni-sub') );
-            break;
-          }
-          case "del" : {
+          /*case "del" : {
             console.log('eliminare la ricetta '+ row.id)
             localStorage.idRicetta = row.id;
             let objRicetta = {}
             objRicetta.idRicetta = row.id;
             model.deleteRicetta(objRicetta)
             break;
-          }
-        }
-      }
+            */
     });
   }
   window.scrollTo(0,document.body.scrollHeight);

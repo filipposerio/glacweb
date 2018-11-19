@@ -132,7 +132,7 @@ document.addEventListener( 'totaleRicetteAccettazione', ( event ) => {
 
 
 document.addEventListener( 'selezioneAccettazione', ( event ) => {
-alert("selezione accettazione")
+//alert("selezione accettazione")
   const htmlAccettazione = `
       <button id="acccselezionata" class="btn btn-link btn-sm"><h6>Accettazione N.  ${localStorage.idAccettazione} del ${localStorage.dataAccettazione} </h6> </button>
       <br>
@@ -454,7 +454,7 @@ const list = ( rows ) => {
   const tableRows =document.getElementsByClassName( "cardaccettazioni" );
   for( let row of tableRows ) {
     console.log('stampo intera riga')
-    alert ("selezionata accettazione n." + row.id)
+    //alert ("selezionata accettazione n." + row.id)
     row.addEventListener('click', ( event ) => {
             localStorage.nRicetta =
             localStorage.idAccettazione = row.id;

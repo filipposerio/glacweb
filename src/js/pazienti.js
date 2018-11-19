@@ -677,14 +677,14 @@ const list = ( rows ) => {
           }
 
           case "del" : {
-            alert("scattato select della riga DEL: contesto: " + localStorage.contesto)
+            //alert("scattato select della riga DEL: contesto: " + localStorage.contesto)
             user.destroy( row.id );
             const parent = row.parentNode;
             parent.removeChild(row);
             break;
           }
           case "upd" : {
-            alert("scattato select della riga SEL: contesto: " + localStorage.contesto)
+            //alert("scattato select della riga SEL: contesto: " + localStorage.contesto)
             const event = new CustomEvent('modificaPaziente', {bubbles: true, cancelable: true})
             event.data=  objPaziente
             document.dispatchEvent( event )
@@ -753,7 +753,7 @@ const initModule = ( container ) => {
   form.addEventListener ('submit', search, false);
   //document.querySelector("input[id='nuovoPaziente']").addEventListener('click', nuovo );
   //localStorage.contesto = "anagrafica"
-  alert("init module: form provenienza: " + localStorage.contesto)
+  //alert("init module: form provenienza: " + localStorage.contesto)
   const btn_nuovo  = document.getElementById( "nuovoPaziente" );
   btn_nuovo.addEventListener ('click', nuovo, false);
   
