@@ -9,7 +9,7 @@ import * as mdlAccettazioni    from './mdlAccettazioni.js';
 import * as esamepaziente   from './esamiPaziente.js';
 import * as esameprivato   from './esamiPrivato.js';
 import * as esame   from './esamiRicetta.js';
-
+import * as utility   from './utility.js';
 
 
 /*
@@ -382,6 +382,36 @@ const list = ( rows ) => {
   console.log("funzione list accettazione")
 
 
+
+  const htmlCard = `
+  <style>
+  #grid { 
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1vw;
+    }
+  #grid > div {
+    font-size: 3vw;
+    padding: .5em;
+    background: lightgray;
+    text-align: center;
+  }
+  </style>
+  <input id="nuovaAccettazione" class="btn-xs btn-link" type="button" value="Nuova accettazione"></input>
+  <h4 align="center"> Elenco accettazioni</h4>
+  <p>
+  <div class="container-fluid">
+      <div id="grid">
+          ${rows.map(row => `
+            <div id="${row.idaccettazione}" class="cardaccettazioni" >N. ${row.idaccettazione} del ${utility.dataItaliana(row.dataaccettazione)}</div>`
+            ).join('')}
+      </div>
+  </div>
+  <p>
+  <div class="ricette-sub"></div>
+`;
+ 
   const html = `
     <input id="nuovaAccettazione" class="btn-xs btn-link" type="button" value="Nuova accettazione"></input>
     <h4 align="center"> Elenco accettazioni</h4>
@@ -415,47 +445,28 @@ const list = ( rows ) => {
     <div class="ricette-sub"></div>
   `;
 
-  document.querySelector( '.elencoacc-sub' ).innerHTML = html;
+  document.querySelector( '.elencoacc-sub' ).innerHTML = htmlCard
   console.log("aggiungo event listener nuova accettazione")
   document.getElementById('nuovaAccettazione').addEventListener('click', nuovo );
 
   const table  = document.getElementById( "accettazioneList" );
   //const tableRows = table.querySelectorAll(".row");
-  const tableRows =table.getElementsByTagName( "tr" );
+  const tableRows =document.getElementsByClassName( "cardaccettazioni" );
   for( let row of tableRows ) {
     console.log('stampo intera riga')
-
-    console.log(row.id)
-
+    alert ("selezionata accettazione n." + row.id)
     row.addEventListener('click', ( event ) => {
-      if (event.target.tagName == 'SEL') {
-        switch( event.target.id ) {
-          case "sel" : {
-            const rowCols = row.getElementsByTagName( "td" );
-
             localStorage.nRicetta =
             localStorage.idAccettazione = row.id;
-            localStorage.dataAccettazione= rowCols[2].innerText;
-            localStorage.totaleLordo= rowCols[3].innerText;
-            localStorage.totaleNetto= rowCols[4].innerText;
-            const event = new CustomEvent('selezioneAccettazione', {bubbles: true, cancelable: true})
-            
+            localStorage.dataAccettazione= ""//rowCols[2].innerText;
+            localStorage.totaleLordo= ""//rowCols[3].innerText;
+            localStorage.totaleNetto= ""//rowCols[4].innerText;
+            const event1 = new CustomEvent('selezioneAccettazione', {bubbles: true, cancelable: true})
             objAccettazione.idaccettazione =row.id
             objAccettazione.objPaziente = objPaziente;
-            event.data=  objAccettazione
-            document.dispatchEvent( event )
-            break;
-          }
-          case "rpl" : {
-            localStorage.idAccettazione = row.id;
-            const rowCols = row.getElementsByTagName( "td" );
-            let objAccettazione ={}
-            objAccettazione.idAccettazione =row.id
-            mdlAccettazioni.riepilogoContabileAccettazione(objAccettazione);
-            break;
-          }
-        }
-      }
+            event1.data=  objAccettazione
+            document.dispatchEvent( event1 )
+      
     });
   }
   window.scrollTo(0,document.body.scrollHeight);

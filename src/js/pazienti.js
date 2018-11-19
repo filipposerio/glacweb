@@ -34,12 +34,11 @@ const userHTMLTemplate = `
       <input id="cognome"  type="text" name="cognome" required>
       <br>
     <label for='comunenascita'>Comune di nascita:</label><br>
-    <input  list="comuni" name='comunenascita' id='comunenascita' autocomplete=off>
-    <datalist id="comuni"></datalist>
+    <select id="comuni" name='comunenascita' id='comunenascita' ></select>
     </br>
     </br>
-      <label for='datanascita'>Data di nascita (AAAA-MM-GG):</label><br>
-      <input id="datanascita"   type="date" name="datanascita" required>
+    <label for='datanascita'>Data di nascita (AAAA-MM-GG):</label><br>
+    <input id="datanascita" style="width: 300px; height:40px" type="date" name="datanascita" required>
       <br>
       <label for='sesso'>Sesso</label><br>
       <select id="sesso" name='sesso'>
@@ -51,12 +50,11 @@ const userHTMLTemplate = `
       <label for="cf">Codice Fiscale </label><br>
       <input id="cf"  type="text" name="cf" maxlength="16" required>
       <br>
-    <label for='comuneResidenza'>Comune di residenza:</label><br>
-    <input  list="comuniresidenza" name='comuneresidenza' id='comuneResidenza' autocomplete=off>
-    <datalist id="comuniresidenza"></datalist>
+    <label for='comuniresidenza'>Comune di residenza:</label><br>
+    <select  id="comuniresidenza" name='comuneresidenza' id='comuneResidenza' ></select>
     <br>
-    <label for="indirizzo">Indirizzo</label><br>
-    <input id="indirizzoResidenza" type="text" name="indirizzoresidenza" maxlength="100" required><br>
+    <label for="indirizzoresidenza">Indirizzo</label><br>
+    <input id="indirizzoresidenza" type="text" name="indirizzoresidenza" maxlength="100" required><br>
     <label for="telefono">Contatti telefonici</label><br>
     <input id="telefono" type="text" name="telefono" maxlength="50" required><br>
     <label for="email">Contatti email</label><br>
@@ -79,7 +77,7 @@ const mainHTML = `
 <form id="search">
   <div class="form-group">
     <label for="name">Paziente da cercare</label>
-    <input type="text" class="form-control" id="name"  placeholder="digita per cercare il paziente (min 3 caratteri)..">
+    <input type="text" class="form-control" id="name"  placeholder="digita per cercare il paziente (min 3 caratteri).." minlength="3" required>
     </div>
     <button type="submit" class="btn-sm btn-link">Cerca paziente</button>
     <button id="nuovoPaziente" type="button" class="btn-sm btn-link" >Registra un nuovo paziente</button>
@@ -126,43 +124,49 @@ info_esami.innerHTML = htmlEsami
 
 document.addEventListener( 'modificaPaziente', ( event ) => {
   
+  
   const datanascita = event.data.datanascita;
   document.getElementById('headerpaziente' ).innerHTML = headePazientePulitoHTML
   document.querySelector( '.read-sub' ).innerHTML = userHTMLTemplate;
   const form = document.forms['user'];
-  dm.JSONToForm( form , event.data)
-  form.dataNascita.value = event.data.datanascita.substring(0,10)
-  const btn_cf = document.getElementById('calcolaCF1')
-  btn_cf.addEventListener('click',fncalcolaCF,false);
+
+  //const btn_cf = document.getElementById('calcolaCF1')
+  //btn_cf.addEventListener('click',fncalcolaCF,false);
   
   const elencocomuni = comuni.fncomuni();
+
   const aa = `
-      ${elencocomuni.map(row => `
-      <option value="${row.Descrizione}" selected></option>`
-      ).join('')}`
-  document.getElementById('comuni' ).innerHTML = aa;
+  ${elencocomuni.map(row => `
+  <option value="${row.Descrizione}">${row.Descrizione}</option>`
+  ).join('')}`;
+  
+  document.getElementById('comuni').innerHTML = aa;
   document.getElementById('comuniresidenza' ).innerHTML = aa;
-  let verifica = true
+
+  dm.JSONToForm( form , event.data)
+  form.datanascita.value = event.data.datanascita.substring(0,10)
+
+  let msg="";
+  let verifica = true;
   form.addEventListener( 'submit', ( event ) => {
     event.preventDefault();
     console.log("scattata submit per update paziente");
     
-    if (verificaComuneInlista(form.comunenascita.value)){
-        verifica=true
-    }
-    else   {
-      message.show("Attenione selezionare una voce dall'elenco per il comune di nascita")
+
+    if (!verificaComuneInlista(form.comunenascita.value)){
       verifica  = false;
+      msg ="Attenzione selezionare una voce dall'elenco per il comune di nascita";
     }
-    if (verificaComuneInlista(form.comuneresidenza.value)){
-      verifica=true
-    }
-    else   {
-      message.show("Attenione selezionare una voce dall'elenco per il comune di residenza")
+    else if (!verificaComuneInlista(form.comuneresidenza.value)){
       verifica  = false;
+      msg="Attenzione selezionare una voce dall'elenco per il comune di residenza";
     }
     if (verifica==true) {
       mdlPazienti.updatePaziente(  dm.formToJSON( form )  );
+    }
+    else
+    {
+      message.show(msg)
     }
 
   });
@@ -290,6 +294,7 @@ const nuovo = () => {
   event.preventDefault();
   console.log("Pazienti - function nuovo: chiamo la nuovo paziente e verifico utente connesso: " + localStorage.username);
   const elencocomuni = comuni.fncomuni()
+  
   const userHTML1 = `
   <fieldset>
     <legend> Nuovo paziente </legend>
@@ -343,9 +348,9 @@ const nuovo = () => {
   document.querySelector( '.read-sub' ).innerHTML = userHTMLTemplate;
   const aa = `
         ${elencocomuni.map(row => `
-        <option value="${row.Descrizione}" selected></option>`
+        <option value="${row.Descrizione}">${row.Descrizione}</option>`
         ).join('')}`
-  document.getElementById('comuni' ).innerHTML = aa;
+  document.getElementById('comuni').innerHTML = aa;
   document.getElementById('comuniresidenza' ).innerHTML = aa;
   const form = document.forms[ 'user' ];
 
@@ -405,7 +410,7 @@ const show = ( data ) => {
         grid-gap: 1vw;
         }
       #grid > div {
-        font-size: 2vw;
+        font-size: 3vw;
         padding: .5em;
         background: lightgray;
         text-align: center;
@@ -415,7 +420,7 @@ const show = ( data ) => {
       <div class="container-fluid">
           <div id="grid">
           ${rows.map(row => `
-            <div id="${row.idanagrafica}" class="cardpazienti">${row.cognome} ${row.nome }</div>
+            <div id="${row.idanagrafica}" class="cardpazienti" >${row.cognome} ${row.nome }</div>
             `
             ).join('')}
             </div>
@@ -435,12 +440,7 @@ const show = ( data ) => {
           for (let row of tableRows) {
           row.addEventListener('click', ( event ) => {
           console.log(event);
-          alert("selezionato paziente: " + row.id)
-          if (event.target.tagName == 'SEL') {
-          //if (event.target.id == 'SEL') {
-            //alert("scattato click bottone")
-            const rowCols = row.getElementsByTagName( "td" );
-
+          //alert("selezionato paziente: " + row.id )
            console.log("verifica obj Paziente ************** :")
            for (let h=0; h<rows.length; h++){
              console.log(row.id+"("+row.id.length+") "+rows[h].idanagrafica+"("+rows[h].idanagrafica.toString().length+")");
@@ -453,12 +453,7 @@ const show = ( data ) => {
            console.log("verifica obj Paziente 0 :")
            console.log(objPaziente)          
  
-            switch( event.target.id ) {
-              case "sel" : {
-                console.log("scattato select della riga")
-  
-                //alert("scattato select della riga SEL: contesto: " + localStorage.contesto)
-                switch (localStorage.contesto) {
+           switch (localStorage.contesto) {
                     case "dialisi" : {
                       const event = new CustomEvent('selezionePazienteTurno', {bubbles: true, cancelable: true})                  
                       event.data=  objPaziente
@@ -495,31 +490,10 @@ const show = ( data ) => {
                       document.dispatchEvent( event )        
                     break;
                     }
-  
-                }
-              break;
-            }
-  
-            case "del" : {
-              alert("scattato select della riga DEL: contesto: " + localStorage.contesto)
-              user.destroy( row.id );
-              const parent = row.parentNode;
-              parent.removeChild(row);
-              break;
-            }
-            case "upd" : {
-              alert("scattato select della riga SEL: contesto: " + localStorage.contesto)
-              const event = new CustomEvent('modificaPaziente', {bubbles: true, cancelable: true})
-              event.data=  objPaziente
-              document.dispatchEvent( event )
-              //user.searchById( row.id );
-              break;
-            }
-          }
+            
         }
       });
-  
-    }
+      }
     
    
     //window.scrollTo(0,document.body.scrollHeight);
@@ -778,6 +752,8 @@ const initModule = ( container ) => {
   const form = document.forms.search;
   form.addEventListener ('submit', search, false);
   //document.querySelector("input[id='nuovoPaziente']").addEventListener('click', nuovo );
+  //localStorage.contesto = "anagrafica"
+  alert("init module: form provenienza: " + localStorage.contesto)
   const btn_nuovo  = document.getElementById( "nuovoPaziente" );
   btn_nuovo.addEventListener ('click', nuovo, false);
   
