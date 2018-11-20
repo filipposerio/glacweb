@@ -9,10 +9,18 @@ Body module
 */
 
 // Module variables
-
+let objPaziente = {}
 const mainHTML = `
 <div class="sedute-sub"></div>
 `;
+
+document.addEventListener( 'allegatoc', ( event ) => {
+  console.log('scattata la event allegatoc')
+  event.preventDefault()
+  objPaziente = event.data;
+  initModule(  document.querySelector( '.certificato-sub' ))
+
+});
 
 
 const stampaCertificato = () => {
@@ -37,14 +45,14 @@ const allegatoc = ( rows ) => {
   <div class="col-lg-6" align="left"><h5>OGGETTO : Dichiarazione di impegno relativa alle prestazioni di dialisi autorizzate</h5></div>
   <br>    
   <div class="col-lg-6" align="right"><h5>AL SERVIZIO MEDICINA DI BASE</h5></div>
-  <div class="col-lg-6" align="right"><h5>DISTRETTO ${localStorage.distrettoaslPaziente}</h5></div>
+  <div class="col-lg-6" align="right"><h5>DISTRETTO ${objPaziente.distrettoaslpaziente}</h5></div>
   <div class="col-lg-6" align="right"><h5>PALERMO</h5></div>
   <br>    
-  <div class="col-lg-6" align="left"><h5>Il sottoscritto assistito/a  ${localStorage.paziente} C.F. ${localStorage.cf}</h5></div>
+  <div class="col-lg-6" align="left"><h5>Il sottoscritto assistito/a  ${objPaziente.cognome} ${objPaziente.nome} C.F. ${objPaziente.cf}</h5></div>
   <br>
-  <div class="col-lg-6" align="left"><h5>nato a ${localStorage.comunePaziente} il  ${utility.dataItaliana(localStorage.dataNascita)} e residente a ${localStorage.comuneResidenza}  <h5></div>
+  <div class="col-lg-6" align="left"><h5>nato a ${objPaziente.comunenascita} il  ${utility.dataItaliana(objPaziente.datanascita)} e residente a ${localStorage.comuneresidenza}  <h5></div>
   <br>    
-  <div class="col-lg-6" align="left"><h5>in Via ${localStorage.indirizzoPaziente}<h5></div>
+  <div class="col-lg-6" align="left"><h5>in Via ${objPaziente.indirizzoresidenza}<h5></div>
   <br>    
   <div class="col-lg-6" align="left"><h5>dichiara sotto la propria responsabilita che le prestazioni di dialisi</h5></div>
   <br>    
@@ -72,7 +80,7 @@ const allegatoc = ( rows ) => {
   <br>    
   <div class="col-lg-6" align="right">______________________ </div>
   <br>
-  <div class="col-lg-6"  align="left">${localStorage.ndocumentoPaziente}</div>
+  <div class="col-lg-6"  align="left">${objPaziente.ndocumento}</div>
   <div class="col-lg-6" align="left">____________________________________________________________________________________________________________________________</div>
   <div class="col-lg-6">
   <div class="d-print-none">

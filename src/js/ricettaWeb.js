@@ -257,6 +257,9 @@ const searchweb = ( event ) => {
   objRicetta.utenteerogatore = localStorage.utenteerogatore;
   objRicetta.pwerogatore = localStorage.pwerogatore;
   //console.log(objRicetta)
+  const now = new Date()
+  const dFruizioneStr = now.getFullYear().toString() +"-" + (now.getMonth()+1).toString().padStart(2, '0') + "-" + (now.getDate().toString().padStart(2,'0'))
+  objRicetta.dataFruizione = dFruizioneStr
 
   model.searchRicettaWeb( objRicetta);
 

@@ -48,13 +48,13 @@ const certificatoSeduteSupplementari = ( rows ) => {
     <br>
     <div class="col-lg-6" align="left">____________________________________________________________________________________________________________________________</div>
     <br>    
-    <div class="col-lg-6" align="left"><h5>Si certifica che il Sig/ra ${objPaziente.paziente}</h5></div>
+    <div class="col-lg-6" align="left"><h5>Si certifica che il Sig/ra ${objPaziente.cognome} ${objPaziente.nome} </h5></div>
     <br>
-    <div class="col-lg-6" align="left"><h5>nato a ${objPaziente.comunePaziente} il ${utility.dataItaliana(objPaziente.dataNascita)} e residente a  <h5></div>
+    <div class="col-lg-6" align="left"><h5>nato a ${objPaziente.comunenascita} il ${utility.dataItaliana(objPaziente.datanascita)} e residente a  <h5></div>
     <br>    
-    <div class="col-lg-6" align="left"><h5>${localStorage.comuneResidenza} in ${localStorage.indirizzoPaziente}<h5></div>
+    <div class="col-lg-6" align="left"><h5>${objPaziente.comuneresidenza} in ${objPaziente.indirizzoresidenza}<h5></div>
     <br>    
-    <div class="col-lg-6" align="left"><h5>Codice Fiscale ${localStorage.cf}</h5></div>
+    <div class="col-lg-6" align="left"><h5>Codice Fiscale ${objPaziente.cf}</h5></div>
     <br>    
     <div class="col-lg-6" align="left"><h5>Affetto/a da insufficienza renale cronica terminale </h5></div>
     <br>    

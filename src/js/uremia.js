@@ -10,10 +10,18 @@ Body module
 */
 
 // Module variables
+let objPaziente = {}
 
 const mainHTML = `
 <div class="sedute-sub"></div>
 `;
+
+document.addEventListener( 'uremia', ( event ) => {
+  console.log('scattata la event uremia')
+  event.preventDefault()
+  objPaziente = event.data;
+  initModule(  document.querySelector( '.certificato-sub' ))
+});
 
 
 const stampaCertificato = () => {
@@ -42,7 +50,7 @@ const certificatoInsufficienza = ( rows ) => {
     <br>    
     <div class="col-lg-6" align="center"><h5>Si certifica </h5></div>
     <br>
-    <div class="col-lg-6" align="left"><h5>che il Sig/ra ${localStorage.paziente} <h5></div>
+    <div class="col-lg-6" align="left"><h5>che il Sig/ra ${objPaziente.cognome} ${objPaziente.nome} <h5></div>
     <br>    
     <br>    
     <div class="col-lg-6" align="left"><h5>Affetto/a da << UREMIA CRONICA TERMINALE >> </h5></div>

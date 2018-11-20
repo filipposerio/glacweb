@@ -36,7 +36,7 @@ document.addEventListener( 'selezionePazienteCertificati', ( event ) => {
   event.preventDefault()
   objPaziente = event.data;
   console.log('scattata la selezionePazienteCertificati')
-  console.log(objPaziente.paziente)
+  console.log(objPaziente.idanagrafica)
   /*const htmlPaziente = `
       <button class="btn btn-link btn-sm"  id="elencocertificati" ><h6>Paziente selezionato: ${objPaziente.nominativo}</h6></button>
 `;
@@ -60,16 +60,33 @@ const sedute = () => {
 }
 
 const allegatoc = () => {
-  certificatoAllegatoC.initModule(  document.querySelector( '.certificato-sub' ))
+  console.log("click su sedute allegatoc")
+  const event = new CustomEvent('allegatoc', {bubbles: true, cancelable: true})
+  event.data=  objPaziente
+  document.dispatchEvent( event )
+  //certificatoAllegatoC.initModule(  document.querySelector( '.certificato-sub' ))
 }
 const insufficienza = () => {
-  certificatoInsufficienza.initModule(  document.querySelector( '.certificato-sub' ))
+  console.log("click su sedute insufficienza")
+  const event = new CustomEvent('insufficienza', {bubbles: true, cancelable: true})
+  event.data=  objPaziente
+  document.dispatchEvent( event )
+
+  //certificatoInsufficienza.initModule(  document.querySelector( '.certificato-sub' ))
 }
 const firme = () => {
-  foglioFirme.initModule(  document.querySelector( '.certificato-sub' ))
+  console.log("click su sedute fogliofirme")
+  const event = new CustomEvent('fogliofirme', {bubbles: true, cancelable: true})
+  event.data=  objPaziente
+  document.dispatchEvent( event )
+  //foglioFirme.initModule(  document.querySelector( '.certificato-sub' ))
 }
 const uremia = () => {
-  certificatoUremia.initModule(  document.querySelector( '.certificato-sub' ))
+  console.log("click su sedute uremia")
+  const event = new CustomEvent('uremia', {bubbles: true, cancelable: true})
+  event.data=  objPaziente
+  document.dispatchEvent( event )
+  //certificatoUremia.initModule(  document.querySelector( '.certificato-sub' ))
 }
 
 

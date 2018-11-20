@@ -8,11 +8,18 @@ Body module
 */
 
 // Module variables
-
+let objPaziente ={}
 const mainHTML = `
 <div class="sedute-sub"></div>
 `;
 
+document.addEventListener( 'fogliofirme', ( event ) => {
+  console.log('scattata la event fogliofirme')
+  event.preventDefault()
+  objPaziente = event.data;
+  initModule(  document.querySelector( '.certificato-sub' ))
+
+});
 
 const stampaCertificato = () => {
   window.print();
@@ -20,6 +27,7 @@ const stampaCertificato = () => {
 const certificatofirme = ( rows ) => {
   const html = `
   <div class="container-fluid" align="center">
+  <br>
   <div class="col-lg-6">
   <button id="stampaCertificato" type="button" class="form-control btn-sm btn-primary d-print-none">Stampa</button>
   </div>
@@ -30,9 +38,9 @@ const certificatofirme = ( rows ) => {
   <div class="col-lg-6" align="left"><h5>PArtita IVA ${localStorage.piva}</h5></div>
   <div class="col-lg-6" align="left"><h5>Telefono: ${localStorage.telefono}</h5></div>
   <div class="col-lg-6" align="left">____________________________________________________________________________________________________________________________________________________</div>
-  <div class="col-lg-6" align="center"><h5>Si certifica che il Sig/ra ${localStorage.paziente} - ${utility.dataItaliana(localStorage.dataNascita)}<h5></div>
+  <div class="col-lg-6" align="center"><h5>Si certifica che il Sig/ra ${objPaziente.cognome} ${objPaziente.nome} - ${utility.dataItaliana(objPaziente.datanascita)}<h5></div>
   <br>    
-  <div class="col-lg-6" align="left"><h5>Documento - ${localStorage.ndocumentoPaziente} - ha effettuato nel mese di ___________________</h5></div>
+  <div class="col-lg-6" align="left"><h5>Documento - ${objPaziente.ndocumento} - ha effettuato nel mese di ___________________</h5></div>
   <br>    
   <div class="col-lg-6" align="left"><h5>N ________________   (________________________________________________________________)</h5></div>
   <br>    
