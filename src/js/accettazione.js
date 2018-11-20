@@ -106,7 +106,7 @@ info_paziente.innerHTML = htmlPaziente
 const btn_accettazioni  = document.getElementById( "elencoaccettazioni" );
 btn_accettazioni.addEventListener ('click', accettazioni, false);
 objPaziente = event.data
-console.log(document)
+//console.log(document)
 initModule( document.querySelector('.read-sub') );
 });
 

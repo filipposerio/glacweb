@@ -190,7 +190,7 @@ btn_accettazioni.addEventListener ('click', accettazioni, false);
 accettazioni(event.data.idPaziente);
 });
 
-document.addEventListener( 'selezionePazienteTurno', ( event ) => {
+document.addEventListener( 'selezionePazienteTurnoNO', ( event ) => {
   console.log('scattata la selezionePazienteTurno')
   const htmlPaziente = `
       <button class="btn btn-link btn-sm"  id="elencoturni" ><h6>Paziente selezionato: ${event.data.cognome}</h6></button>

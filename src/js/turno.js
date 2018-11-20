@@ -10,7 +10,7 @@ Body module
 */
 
 // Module variables
-
+let objPaziente={}
 const mainHTML = `
 <p>
 
@@ -20,6 +20,25 @@ const mainHTML = `
 <div id="subesa" class="elencoturni-sub"></div>'
 `;
 
+document.addEventListener( 'selezionePazienteTurno', ( event ) => {
+  event.preventDefault;
+  console.log('scattata la selezionePazienteTurno')
+  const htmlPaziente = `
+      <button class="btn btn-link btn-sm"  id="elencoturni" ><h6>Paziente selezionato: ${event.data.cognome}</h6></button>
+`;
+const pz  = document.getElementById( "cercapaziente" );
+pz.innerHTML=""
+const dtl  = document.getElementById( "dtlPazienti" );
+dtl.innerHTML=""
+
+const info_paziente  = document.getElementById( "info_paziente" );
+info_paziente.innerHTML = htmlPaziente
+const btn_turno  = document.getElementById( "elencoturni" );
+btn_turno.addEventListener ('click', turni, false);
+objPaziente = event.data
+initModule( document.querySelector('.read-sub') );
+
+});
 const assegnaTurno =( ) => {
   const turnoHTML = `
 
@@ -55,10 +74,13 @@ const assegnaTurno =( ) => {
   form.addEventListener( 'submit', ( event ) => {
       event.preventDefault();
       console.log("scattata submit per turnoPaziente")
+      console.log(objPaziente)
+      console.log("scattata submit per turnoPaziente")
+
       let objTurno ={};
       localStorage.turno = form.turno.value;
       objTurno.turno = form.turno.value;
-      objTurno.idPaziente = localStorage.idPaziente;
+      objTurno.idPaziente = objPaziente.idanagrafica;
       objTurno.stanza = form.stanza.value;
       objTurno.letto = form.letto.value;
 
@@ -133,12 +155,12 @@ const list = ( rows ) => {
     </thead>
     <tbody>
     ${rows.map(row => `
-      <tr id=${row.IDTURNOPAZIENTE}  >
-        <td ><p>${row.TURNO}</p></td>
-        <td ><p>${row.COGNOME}</p></td>
-        <td ><p>${row.NOME}</p></td>
-        <td ><p>${row.STANZA}</p></td>
-        <td ><p>${row.LETTO}</p></td>
+      <tr id=${row.idturnopaziente}  >
+        <td ><p>${row.turno}</p></td>
+        <td ><p>${row.cognome}</p></td>
+        <td ><p>${row.nome}</p></td>
+        <td ><p>${row.stanza}</p></td>
+        <td ><p>${row.letto}</p></td>
         <td><p><sel id="del">Elimina</sel></p></td>
         <td><p><sel id="upd">Modifica</sel></p></td>
       </tr>`
