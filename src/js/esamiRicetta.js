@@ -50,8 +50,8 @@ document.addEventListener( 'insertEsamiPazienteRic', ( event ) => {
 });
 
 document.addEventListener( 'searchPrestazioniDescrizioneRic', ( event ) => {
-  console.log("passo dalla eventlistener searchPrestazioniDescrizione... " )
-  if (event.data != undefined) {
+  console.log("passo dalla eventlistener searchPrestazioniDescrizioneRic... " )
+  if (event.data ) {
     console.log("searchPrestazioniDescrizione creo lista da elenco" )
 
       listEsamiLaboratorio( event.data );
@@ -76,7 +76,7 @@ document.addEventListener( 'aggiungiEsameRicetta', ( event ) => {
 });
 document.addEventListener( 'searchEsamiRicetta', ( event ) => {
   console.log("passo dalla eventlistener searchEsamiRicetta... " + event.data)
-  if (event.data != undefined) {
+  if (event.data) {
     //console.log("searchEsamiRicetta creo lista da elenco" + event.data)
 
       listEsamiRicetta( event.data );
@@ -230,13 +230,13 @@ const listEsamiRicetta = ( rows ) => {
      </tr>
      ${rows.map(row => `
        <!--tr id=${row.idEsame} class="row" descrizioneEsame="${row.descrizioneEsame}" numEsame="${row.num_esame}" codicePrestazioneSSN="${row.codicePrestazioneSSN}"-->
-       <tr id=${row.IDPRESTAZIONE} >
+       <tr id=${row.idprestazione} >
          <td><p><sel id="add">+</sel></p></td>
-         <td ><p>${row.NUM_PREST}</p></td>
-         <td ><p>${row.DESCRIZIONE}</p></td>
-         <td ><p>${row.CODICEPRESTAZIONESSN}</p></td>
-         <td ><p>${row.TARIFFACONVENZIONATO}</p></td>
-         <td ><p>${row.TARIFFAPRIVATO}</p></td>
+         <td ><p>${row.num_prest}</p></td>
+         <td ><p>${row.descrizione}</p></td>
+         <td ><p>${row.codiceprestazionessn}</p></td>
+         <td ><p>${row.tariffaconvenzionato}</p></td>
+         <td ><p>${row.tariffaprivato}</p></td>
 
        </tr>`
      ).join('')}

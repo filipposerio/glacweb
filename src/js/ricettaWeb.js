@@ -120,7 +120,7 @@ document.addEventListener( 'elencoRicetteAccettazione', ( event ) => {
 });
 
 
-document.addEventListener( 'aaselezioneRicetta', ( event ) => {
+document.addEventListener( 'selezioneRicetta', ( event ) => {
   const htmlRicetta = `
   <button id="ricettaselezionata"class="btn btn-link btn-sm"><h6> Ricetta N. ${localStorage.nRicetta}</h6></button>
   <br>
@@ -274,7 +274,6 @@ const esamiricetta = ( idRicetta ) => {
 
 
 const ricettaselezionata = () => {
-
   const event = new CustomEvent('selezioneRicetta', {bubbles: true, cancelable: true})
   let objRicetta ={}
   objRicetta.idRicetta =localStorage.idRicetta;

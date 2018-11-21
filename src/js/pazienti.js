@@ -77,7 +77,7 @@ const mainHTML = `
 <form id="search">
   <div class="form-group">
     <label for="name">Paziente da cercare</label>
-    <input type="text" class="form-control" id="name"  placeholder="digita per cercare il paziente (min 3 caratteri).." minlength="3" required>
+    <input type="text" class="form-control" id="name"  placeholder="digita per cercare il paziente (min 1 carattere).." minlength="1" required>
     </div>
     <button type="submit" class="btn-sm btn-link">Cerca paziente</button>
     <button id="nuovoPaziente" type="button" class="btn-sm btn-link" >Registra un nuovo paziente</button>

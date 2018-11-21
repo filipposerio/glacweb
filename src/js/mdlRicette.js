@@ -97,6 +97,7 @@ sio.on( 'searchEsamiRicetta', ( result ) => {
 
     const event = new CustomEvent('searchEsamiRicetta', {bubbles: true, cancelable: true})
     console.log("ritorno della searchEsamiRicetta: " + result)
+    console.log("ritorno della searchEsamiRicetta numero di righe: " + result.rowCount)
     if (result.rowCount) {
       event.data = result.rows
     }
@@ -138,11 +139,11 @@ sio.on( 'searchPrestazioniDescrizioneRic', ( result ) => {
   //alert(result)
     const event = new CustomEvent('searchPrestazioniDescrizioneRic', {bubbles: true, cancelable: true})
     console.log("ritorno della searchPrestazioniDescrizioneRic: " )
-    if (result.hasOwnProperty('recordset')) {
-      event.data = result.recordset
+    if (result.rowCount >0) {
+      event.data = result.rows
     }
     else {
-      event.data = result
+      event.data = ""
     }
     document.dispatchEvent( event )
 })
