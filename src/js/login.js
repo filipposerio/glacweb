@@ -58,13 +58,16 @@ document.addEventListener( 'oklogin', ( event ) => {
     localStorage.indirizzo = event.data[0].indirizzo;
     localStorage.comune = event.data[0].comune;
     localStorage.telefono = event.data[0].telefono;
-    localStorage.telefono = event.data[0].telefono;
+    localStorage.piva = event.data[0].piva;
+    localStorage.email= event.data[0].email;
     localStorage.pincode = event.data[0].dempcode;
     localStorage.codregioneerogatore = '190'
     localStorage.codaslerogatore = '206'
     localStorage.codssaerogatore = event.data[0].demssa;
     localStorage.utenteerogatore = event.data[0].demusr;
     localStorage.pwerogatore = event.data[0].dempw;
+    localStorage.direttoresanitario = event.data[0].dirsan;
+
     
     console.log("ragione sociale : " + localStorage.ragionesociale)
     console.log(" username: " + localStorage.username);

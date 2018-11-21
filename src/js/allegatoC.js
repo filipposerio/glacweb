@@ -58,13 +58,13 @@ const allegatoc = ( rows ) => {
   <br>    
   <div class="col-lg-6" align="left"><h5>autorizzate __________________ da questa USL saranno effetuate presso</h5></div>
   <br>    
-  <div class="col-lg-6" align="left"><h5>l'ambulatorio di dialisi , denominato EMODIALISI PALERMO S.R.L.</h5></div>
+  <div class="col-lg-6" align="left"><h5>l'ambulatorio di dialisi , denominato ${localStorage.ragionesociale} </h5></div>
   <br>    
 
 
-  <div class="col-lg-6" align="left"><h5>operante nel comune di PALERMO Via Giovanni Dotto n 12</h5></div>
+  <div class="col-lg-6" align="left"><h5>operante nel comune di ${localStorage.comune} ${localStorage.indirizzo}</h5></div>
   <br>    
-  <div class="col-lg-6" align="left"><h5>telefono 091 427426/6523409 diretto dal Dott Marco Mancusi.</h5></div>
+  <div class="col-lg-6" align="left"><h5>telefono ${localStorage.telefono} diretto dal Dott ${localStorage.direttoresanitario}.</h5></div>
   <br>    
   <div class="col-lg-6" align="left"><h5>Nel caso in cui per motivi vari , le prestazioni autorizzate non siano</h5></div>
   <br>    

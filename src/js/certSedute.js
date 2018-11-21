@@ -37,13 +37,9 @@ const certificatoSeduteSupplementari = ( rows ) => {
   <div class="col-lg-6" align="left">____________________________________________________________________________________________________________________________</div>
   <div class="arow">
     <div class="col-lg-6" align="left"><h5>${localStorage.ragionesociale}</h5></div>
-    </div>
-
-  
+    <div class="col-lg-6" align="left"><h5>Direttore Sanitario ${localStorage.direttoresanitario}</h5></div>    
     <div class="col-lg-6" align="left"><h5>${localStorage.indirizzo}</h5></div>
     <br>
-    
-
     <div class="col-lg-6" align="left"><h5>${localStorage.telefono}</h5></div>
     <br>
     <div class="col-lg-6" align="left">____________________________________________________________________________________________________________________________</div>

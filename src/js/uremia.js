@@ -68,7 +68,7 @@ const certificatoInsufficienza = ( rows ) => {
     <br>    
     <div class="col-lg-6" align="left"><h5>Il paziente riferisce di avere utilizzato durante il </h5></div>
     <br>    
-    <div class="col-lg-6" align="left"><h5>sopradetto periodo i mezzi di trasporto della MADONIE SOC.</h5></div>
+    <div class="col-lg-6" align="left"><h5>sopradetto periodo i mezzi di trasporto della ________________</h5></div>
     <br>    
     <div class="col-lg-6" align="left">____________________________________________________________________________________________________________________________</div>
     <div class="col-lg-6" align="left"><h6>${localStorage.ragionesociale} ${localStorage.indirizzo} ${localStorage.telefono}</h6></div>
