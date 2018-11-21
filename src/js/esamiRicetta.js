@@ -10,6 +10,7 @@ Body module
 */
 
 // Module variables
+let objRicetta = {}
 
 
 const aggiungiesamiModale = `
@@ -42,6 +43,11 @@ const aggiungiesamiModale = `
 const mainHTML = `
 <div id="subesa" class="elencoesami-sub"></div>
 `;
+document.addEventListener( 'esamiRicetta', ( event ) => {
+  console.log("scattata la esamiRicetta");
+  objRicetta = event.data;
+  initModule( document.querySelector('.elencoric-sub') );
+});
 
 document.addEventListener( 'insertEsamiPazienteRic', ( event ) => {
   console.log("scattata la insertEsamiPazienteRic");
@@ -72,7 +78,7 @@ document.addEventListener( 'eliminaEsameRicetta', ( event ) => {
 document.addEventListener( 'aggiungiEsameRicetta', ( event ) => {
   console.log("scattata la aggiungiEsameRicetta");
   console.log("chiamo la searchEsamiRicetta......" );
-  model.searchEsamiRicetta( localStorage.idRicetta );
+  model.searchEsamiRicetta( objRicetta.idRicetta );
 });
 document.addEventListener( 'searchEsamiRicetta', ( event ) => {
   console.log("passo dalla eventlistener searchEsamiRicetta... " + event.data)
@@ -116,7 +122,7 @@ const listEsamiRicetta = ( rows ) => {
   <button class="btn-link btn-sm" id="aggiungiesami">Aggiungi Esami</button>
   <!--button  class="btn-link btn-sm" id="elencoesamiricetta" >Esami della ricetta</button-->
   <button  class="btn-link btn-sm" id="riepilogoricetta" >Conferma</button>
-  <h6 align="center"> Elenco esami già associati alla ricetta  NNNNNNNN </h6>
+  <h6 align="center"> Elenco esami già associati alla ricetta  ${objRicetta.nricetta} </h6>
 
   <table id="esamiList"  class="table table-sm" >
     <thead>
@@ -258,9 +264,9 @@ const listEsamiRicetta = ( rows ) => {
              const rowCols = row.getElementsByTagName( "td" );
              let objEsame ={};
              objEsame.idPrestazione = row.id;
-             objEsame.idPaziente = localStorage.idPaziente;
-             objEsame.idAccettazione = localStorage.idAccettazione;
-             objEsame.idRicetta = localStorage.idRicetta;
+             objEsame.idPaziente = objRicetta.objAccettazionePaziente.idPaziente;
+             objEsame.idAccettazione = objRicetta.objAccettazionePaziente.idaccettazione;
+             objEsame.idRicetta = objRicetta.idRicetta;
              //objEsame.num_esame = rowCols[1].innerText
              objEsame.tEsame = rowCols[5].innerText
              //model.aggiungiEsameRicetta(objEsame)
@@ -324,7 +330,7 @@ const aggiungiEsami = (event) => {
 const confermaEsami = (event) => {
   event.preventDefault();
   //alert("conferma esami")
-  //console.log("scattata la confermaEsami");
+  console.log("scattata la confermaEsami");
 
   const ulEsami  = document.getElementById( "carrelloesami" );
   //const liRemove  = ulEsami.getElementById( event.target.id );
@@ -335,11 +341,14 @@ const confermaEsami = (event) => {
   for( let li of lis ) {
     const objEsame ={}
     objEsame.idPrestazione = li.getAttribute("id");
-    objEsame.idPaziente = localStorage.idPaziente;
-    objEsame.idAccettazione = localStorage.idAccettazione;
-    objEsame.idRicetta = localStorage.idRicetta;
+    objEsame.idPaziente = objRicetta.objAccettazionePaziente.objPaziente.idanagrafica
+    objEsame.idAccettazione = objRicetta.objAccettazionePaziente.idaccettazione;
+    objEsame.idRicetta = objRicetta.idricetta;
+    console.log(objRicetta)
+    console.log(objEsame)
     objEsame.tEsame = li.getAttribute("tariffa");
     arrayEsami.push(objEsame)
+
 
 
      //li.parentNode.removeChild(li);
@@ -422,9 +431,7 @@ const showEsamiModal = ( msg ) => {
 const initModule = ( container ) => {
   console.log("initmodule esamiRicetta idRicetta " +localStorage.idRicetta)
   container.innerHTML = mainHTML;
-
-
-  model.searchEsamiRicetta( localStorage.idRicetta );
+  model.searchEsamiRicetta( objRicetta.idricetta );
 };
 
 

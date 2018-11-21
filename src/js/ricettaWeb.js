@@ -12,6 +12,7 @@ Body module
 */
 let userID;
 let objAccettazionePaziente;
+let objRicetta ={};
 // Module variables
 
 
@@ -131,13 +132,23 @@ document.addEventListener( 'selezioneRicetta', ( event ) => {
 //document.querySelector( '.elencoric-sub' ).innerHTML = '';
 //const info_ricetta  = document.getElementById( "info_ricetta" );
 //info_ricetta.innerHTML = htmlRicetta
+document.querySelector('.elencoric-sub').innerHTML = htmlRicetta
 const btn_confermaricetta  = document.getElementById( "riepilogoricetta" );
 btn_confermaricetta.addEventListener ('click', riepilogoricetta, false);
 const btn_esami  = document.getElementById( "elencoesamiricetta" );
 btn_esami.addEventListener ('click', esamiricetta, false);
 const btn_ricettaselezionata  = document.getElementById( "ricettaselezionata" );
 btn_ricettaselezionata.addEventListener ('click', ricettaselezionata, false);
-esamiricetta(localStorage.idRicetta)
+//esamiricetta(localStorage.idRicetta)
+const event1 = new CustomEvent('esamiRicetta', {bubbles: true, cancelable: true})
+//objRicetta.nRicetta=localStorage.nRicetta;
+//objRicetta.idRicetta=localStorage.idRicetta;
+objRicetta.objAccettazionePaziente =  objAccettazionePaziente;
+
+console.log("CHIAMO LA ESAMIRICETTA +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+console.log(objRicetta)
+event1.data=  objRicetta
+document.dispatchEvent( event1 )
 });
 
 document.addEventListener( 'riepilogoContabileRicetta', ( event ) => {
@@ -266,8 +277,8 @@ const searchweb = ( event ) => {
 };
 
 const esamiricetta = ( idRicetta ) => {
+  
   console.log("chiamo la iniit module esame per elenco esami per ricetta")
-  event.preventDefault();
   esami.initModule( document.querySelector('.elencoric-sub') );
 };
 
@@ -337,7 +348,7 @@ const show = ( data ) => {
 
 
 const listCard = ( rows ) => {
-  console.log("funzione list")
+  console.log("funzione listcard")
 
   console.log(rows)
   //console.log("idRicetta prima riga: "  + rows[0].idRicetta)
@@ -405,7 +416,7 @@ const listCard = ( rows ) => {
       </thead>
       <tbody>
         ${rows.map(row => `
-          <tr id=${row.idricetta}>
+          <tr id="${row.idricetta}" nric="${row.nricetta}">
             <td><p><sel id="sel">Selezione</sel></p></td>
             <td><p><sel id="rpl">Riepilogo contabile</sel></p></td>
             <td ><p>${row.nricetta}</p></td>
@@ -447,13 +458,23 @@ const listCard = ( rows ) => {
   const tableRows =document.getElementsByClassName( "cardricette" );
   for( let row of tableRows ) {
     row.addEventListener('click', ( event ) => {
+      console.log("recupero ricetta da elenco");
+            for (let h=0; h<rows.length; h++){
+              console.log(row.id+"("+row.id.length+") "+rows[h].idricetta+"("+rows[h].idricetta.toString().length+")");
+              if (rows[h].idricetta == row.id) {
+                console.log("TROVATO");
+                objRicetta = rows[h]
+              }
+            }
             localStorage.idRicetta = row.id;
             const rowCols = row.getElementsByTagName( "td" );
-            localStorage.nRicetta = ""//rowCols[2].innerText
+            //localStorage.nRicetta = ""//rowCols[2].innerText
             const event1 = new CustomEvent('selezioneRicetta', {bubbles: true, cancelable: true})
-            let objRicetta ={}
-            objRicetta.idRicetta =row.id
-            objRicetta.nRicetta =localStorage.nRicetta
+            
+            //objRicetta.idRicetta =row.id
+            //objRicetta.nRicetta =row.getAttribute("nric")
+            console.log(objRicetta)
+            console.log(objRicetta.nricetta)
 
             localStorage.esenzioneRicetta =""// (rowCols[8].innerText.length > 0) ? "S" : "N";
             localStorage.ssn = ""//rowCols[10].innerText == "S" ? "SSN" : "Privato"

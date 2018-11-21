@@ -10,6 +10,8 @@ Body module
 */
 
 // Module variables
+let objAccettazione ={}
+let objPaziente ={}
 
 const mainHTML = `
 <div class="elencoesami-sub"></div>
@@ -45,39 +47,36 @@ localStorage.totaleLordo = parseFloat(localStorage.totaleLordo).toFixed(2);
   <button id="stampaEsamiAccettazione" type="button" class="btn-sm btn-link d-print-none">Stampa</button>
   </div>
   
-  <div class="arow">
-    <div class="col-sm"><h5>Istituto Polispecialistico Clinico Diagnostico</h5></div>
-    <div class="col-sm"><h5>Accettazione N. ${localStorage.idAccettazione}</h5></div>
+    <div class="arow">
+    <div class="col-sm"><h5>${localStorage.ragionesociale}</h5></div>
     </div>
 
-    <div class="arow">
-    <div class="col-sm"><h6>Dr. Giacomo Liguori Soc. Consortile a.r.l.</h6></div>
-    <div class="col-sm"></div>
-    </div>
+  
 
     <div class="arow">
-    <div class="col-sm"><h6>Via Padre Giuseppe Puglisi, 74/76</h6></div>
+    <div class="col-sm"><h6>${localStorage.indirizzo}</h6></div>
     <div class="col-sm"></div>
     </div>
 
     <div class="arow">
-    <div class="col-sm"><h5>Paziente: ${localStorage.paziente}</h5></div>
-    <div class="col-sm"><h5>Data Accettazione: ${localStorage.dataAccettazione}</h5></div>
+    <div class="col-sm"><h5>Accettazione N. ${objAccettazione.idaccettazione}</h5></div>
+    <div class="col-sm"><h5>Paziente: ${objPaziente.cognome} ${objPaziente.nome}</h5></div>
+    <div class="col-sm"><h5>Data Accettazione: ${objAccettazione.dataaccettazione}</h5></div>
     </div>
     <div class="arow">
-    <div class="col-sm">${localStorage.indirizzoPaziente} </div>
+    <div class="col-sm">${objPaziente.indirizzoresidenza} </div>
     <div class="col-sm"></div>
     </div>
     <div class="arow">
-    <div class="col-sm">${localStorage.cf}</div>
+    <div class="col-sm">${objPaziente.cf}</div>
     <div class="col-sm"></div>
     </div>
     <div class="arow">
-    <div class="col-sm">${localStorage.comunePaziente} </div>
+    <div class="col-sm">${objPaziente.comunenascita} </div>
     <div class="col-sm"></div>
     </div>
     <div class="arow">
-    <div class="col-sm">${localStorage.telefonoPaziente} </div>
+    <div class="col-sm">${objPaziente.telefono} </div>
     <div class="col-sm"></div>
     </div>
 
@@ -97,9 +96,9 @@ localStorage.totaleLordo = parseFloat(localStorage.totaleLordo).toFixed(2);
         </thead>
         <tbody>
         ${rows.map(row => `
-          <tr id=${row.IDESAMEPAZIENTE}  >
-            <td ><p>${row.DESCRIZIONE}</p></td>
-            <td ><p>${row.NRICETTA}</p></td>
+          <tr id=${row.idesamepaziente}  >
+            <td ><p>${row.descrizione}</p></td>
+            <td ><p>${row.nricetta}</p></td>
           </tr>`
         ).join('')}
         </tbody>
@@ -148,6 +147,11 @@ const initModule = ( container ) => {
   model.searchEsamiPaziente( localStorage.idAccettazione );
 };
 
+const setobjAccettazione = (obj) => {
+  objAccettazione = obj
+}
+const setobjPaziente = (obj) => {
+  objPaziente = obj
+}
 
-
-export { initModule };
+export { initModule, setobjAccettazione,setobjPaziente };

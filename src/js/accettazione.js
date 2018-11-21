@@ -160,7 +160,7 @@ ricetteAccettazione();
 });
 
 
-document.addEventListener( 'selezioneRicetta', ( event ) => {
+document.addEventListener( 'selezioneRicettaNO', ( event ) => {
 
   const htmlRicetta = `
   <!--h5>Ricetta N. ${event.data.nRicetta}<h5-->
@@ -240,9 +240,11 @@ const esamiprivato = (  ) => {
 };
 
 const esamipaziente = (  ) => {
-  event.preventDefault();
+ 
   //const info_ricetta  = document.getElementById( "info_ricetta" );
   //info_ricetta.innerHTML = '';
+  esamepaziente.setobjAccettazione(objAccettazione)
+  esamepaziente.setobjPaziente(objPaziente)
   esamepaziente.initModule( document.querySelector('.riepilogo-sub') );
 };
 
