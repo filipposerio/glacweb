@@ -49,6 +49,11 @@ document.addEventListener( 'esamiRicetta', ( event ) => {
   initModule( document.querySelector('.elencoric-sub') );
 });
 
+document.addEventListener( 'aggiungiEsameRicetta', ( event ) => {
+  console.log("scattata la aggiungiEsameRicetta");
+  console.log("chiamo la searchEsamiRicetta....." );
+  model.searchEsamiRicetta( localStorage.idRicetta );
+});
 document.addEventListener( 'insertEsamiPazienteRic', ( event ) => {
   console.log("scattata la insertEsamiPazienteRic");
   console.log("chiamo la searchEsamePaziente......" );
@@ -78,7 +83,7 @@ document.addEventListener( 'eliminaEsameRicetta', ( event ) => {
 document.addEventListener( 'aggiungiEsameRicetta', ( event ) => {
   console.log("scattata la aggiungiEsameRicetta");
   console.log("chiamo la searchEsamiRicetta......" );
-  model.searchEsamiRicetta( objRicetta.idRicetta );
+  model.searchEsamiRicetta( localStorage.idRicetta  );
 });
 document.addEventListener( 'searchEsamiRicetta', ( event ) => {
   console.log("passo dalla eventlistener searchEsamiRicetta... " + event.data)
@@ -233,6 +238,7 @@ const listEsamiRicetta = ( rows ) => {
        <th scope="col">codiceSSN</th>
        <th scope="col">T convenzione</th>
        <th scope="col">T privato</th>
+       <th scope="col">NUMERO</th>
      </tr>
      ${rows.map(row => `
        <!--tr id=${row.idEsame} class="row" descrizioneEsame="${row.descrizioneEsame}" numEsame="${row.num_esame}" codicePrestazioneSSN="${row.codicePrestazioneSSN}"-->
@@ -243,6 +249,7 @@ const listEsamiRicetta = ( rows ) => {
          <td ><p>${row.codiceprestazionessn}</p></td>
          <td ><p>${row.tariffaconvenzionato}</p></td>
          <td ><p>${row.tariffaprivato}</p></td>
+         <td ><p>${row.numeroesami}</p></td>
 
        </tr>`
      ).join('')}
@@ -375,7 +382,7 @@ const clearulEsami = () => {
   const ulEsami  = document.getElementById( "carrelloesami" );
   //const liRemove  = ulEsami.getElementById( event.target.id );
   var lis = document.querySelectorAll('#carrelloesami li');
-  console.log(lis);
+  //console.log(lis);
   for( let li of lis ) {
       li.parentNode.removeChild(li);
     }

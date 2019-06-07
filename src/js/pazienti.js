@@ -84,11 +84,7 @@ const mainHTML = `
 </div>
 </form>
 </div>
-<div id="headerpaziente" class="d-print-none">
-  <div class="row" >
-    <div class="col" id="info_paziente"></div>
-  </div>
-</div>
+
 <div id="dtlPazienti" class="read-sub">  </div>
 </div>
 `;
@@ -126,7 +122,7 @@ document.addEventListener( 'modificaPaziente', ( event ) => {
   
   
   const datanascita = event.data.datanascita;
-  document.getElementById('headerpaziente' ).innerHTML = headePazientePulitoHTML
+  
   document.querySelector( '.read-sub' ).innerHTML = userHTMLTemplate;
   const form = document.forms['user'];
 
@@ -259,7 +255,7 @@ document.addEventListener( 'searchCognomeAcc', ( event ) => {
     console.log("Pazienti - event searchCognomeAcc:  event.data undefined!!!!!!")
 
     message.show("Pazienti - event searchCognomeAcc: Nessun paziente presente.")
-    list([])
+    listCard([])
   }
 });
 
@@ -274,7 +270,7 @@ document.addEventListener( 'searchCognome', ( event ) => {
   else {
     console.log("Pazienti - event searchCognome:  event.data undefined!!!!!!")
     message.show("Pazienti - event searchCognome: Nessun paziente presente.")
-    list([])
+    listCard([])
   }
 });
 
@@ -344,7 +340,7 @@ const nuovo = () => {
     </form>
   </fieldset>
 `;
-  document.getElementById('headerpaziente' ).innerHTML = headePazientePulitoHTML
+ // document.getElementById('headerpaziente' ).innerHTML = headePazientePulitoHTML
   document.querySelector( '.read-sub' ).innerHTML = userHTMLTemplate;
   const aa = `
         ${elencocomuni.map(row => `
@@ -451,7 +447,9 @@ const show = ( data ) => {
   
            }
            console.log("verifica obj Paziente 0 :")
-           console.log(objPaziente)          
+           console.log(objPaziente)       
+           console.log(" contesto [ " + localStorage.contesto +"]")
+
  
            switch (localStorage.contesto) {
                     case "dialisi" : {
@@ -487,7 +485,10 @@ const show = ( data ) => {
                       console.log(objPaziente)
                       event.data=  objPaziente
                       console.log(event.data)
-                      document.dispatchEvent( event )        
+                      document.dispatchEvent( event ) 
+                      setPaziente(objPaziente)
+                      
+                      
                     break;
                     }
             
@@ -668,7 +669,8 @@ const list = ( rows ) => {
                     console.log(objPaziente)
                     event.data=  objPaziente
                     console.log(event.data)
-                    document.dispatchEvent( event )        
+                    document.dispatchEvent( event )
+                        
                   break;
                   }
 
@@ -705,8 +707,7 @@ const list = ( rows ) => {
 const search = ( event ) => {
   console.log('search pazienti' +  event.target.name.value );
   event.preventDefault();
-  const info_paziente  = document.getElementById( "info_paziente" );
-  info_paziente.innerHTML = '';
+  
   console.log("chiamo la searchPazienti......: filtro: " +  event.target.name.value);
   document.querySelector( '.read-sub' ).innerHTML = "Waiting..."
   mdlPazienti.searchPazientiCognomeAcc( event.target.name.value );
@@ -766,4 +767,20 @@ const aggiornaTotaliAccettazione =  (tariffa) => {
   myinfoacc.innerHTML = `Accettazione N. ${localStorage.idAccettazione} del ${localStorage.dataAccettazione}`;
 }
 
-export { initModule, aggiornaTotaliAccettazione};
+
+const setPaziente =  (obj) => {
+  console.log("setPaziente")
+  console.log(obj)
+  objPaziente = obj
+  console.log(objPaziente)
+  const event1 = new CustomEvent('selezionePazienteLat', {bubbles: true, cancelable: true})
+  event1.data=  objPaziente
+  document.dispatchEvent(event1)
+}
+
+const getPaziente =  () => {
+  return objPaziente;
+}
+
+
+export {setPaziente, getPaziente,initModule, aggiornaTotaliAccettazione};

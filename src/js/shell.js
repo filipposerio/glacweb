@@ -4,20 +4,61 @@ import * as login from './login.js';
 import * as message from './message.js';
 import * as configurazione from './configurazione.js';
 import * as turno from './turno.js';
+import * as laterale from './laterale.js';
 // Module variables
 const main_html = `
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary"  >
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary"  media="screen">
 <a class="navbar-brand" href="#">GlacWeb ver.2.0.0 pg</a>
   <div class="navbar-nav"  ></div-->
 </nav>
 <div align="center" class="display-5 d-print-none" id="sottotitolo"></div>
-<div class="container-fluid main-content" ></div>
+<div class="container-fluid amain-content" ></div>
 <div class="shell-modal"></div>
+<div class="container-fluid oldmain-content" ></div>
+<div class="row shellcontainer">
+
+  <div class="col-80">
+    <div id="centrale" class="container  container-centrale ">
+    
+    </div>
+  </div>
+  <div class="col-20">
+    <div id="laterale" class="container container-destro">
+    
+    </div>
+  </div>
+</div>
 `;
 
 
 const navbar_html = `
-<a href="#anagrafica" id="anagrafica" class="shell-nav-li nav-item nav-link">Anagrafica</a>
+<ul >
+<li class="menuitem" id="home"><a href="#">Home</a></li>
+<li class="menuitem"  id="anagrafica"><a href="#anagrafica" id="anagrafica" >Anagrafica</a></li>
+<li class="menuitem"  id="turni"><a href="#turni" id="turni" >Gestione Turni Dialisi</a></li>
+<li class="menuitem"  id="certificazioni"><a href="#certificazioni" id="certificazioni" >Certificazioni</a></li>
+<li class="menuitem"  id="rendiconto"><a href="#rendiconto" id="rendiconto" >Rendiconto</a></li>
+<li class="menuitem"  id="statistiche"><a href="#statistiche" id="statistiche" >Statistiche</a></li>
+<li class="menuitem"  id="configurazione"><a href="#configurazione" id="configurazione" >Configurazione</a></li>
+<li class="dropdown">
+<a href="javascript:void(0)" class="dropbtn">Accettazione</a>
+<div class="dropdown-content">
+  <a class="menuitem" href="#accettazioni" id="accettazioni" >Nuova</a>
+  <a class="menuitem" href="#accettazionidata" id="accettazionidata" >Ricerca</a></li>
+</div>
+</li>
+<li class="dropdown">
+<a href="javascript:void(0)" class="dropbtn">Ricette</a>
+<div class="dropdown-content">
+  <a class="menuitem" href="#ricettepaziente" id="ricettepaziente" >Ricerca per data</a>
+  <a class="menuitem" href="#ricettedata" id="accettazionidata" >Ricette per paziente</a></li>
+</div>
+</li>
+<li class="menuitem" style="float:right"><a id="logout" class="active" href="#">Logout</a></li>
+</ul>
+<br>
+<a href="#anagrafica" id="anagraficaOld" class="menuitem">Anagrafica</a>
 <a id="turni" class="shell-nav-li nav-item nav-link" href="#">Gestione Turni Dialisi</a>
 <a href="#accettazioni" id="accettazioni" class="shell-nav-li nav-item nav-link">Accettazioni</a>
 <a id="certificazioni" class="shell-nav-li nav-item nav-link" href="#">Certificazioni</a>
@@ -34,41 +75,41 @@ const onClickMenuitem = ( id ) => {
       case "rendiconto": {
 
         document.getElementById('sottotitolo').innerHTML="Rendiconto"
-        document.querySelector('.main-content').innerHTML = "Rendiconto"
+        document.querySelector('.container-centrale ').innerHTML = "Rendiconto"
 
         break;
       }
       case "statistiche": {
 
         document.getElementById('sottotitolo').innerHTML="Statistiche"
-        document.querySelector('.main-content').innerHTML = "Statistiche"
+        document.querySelector('.container-centrale ').innerHTML = "Statistiche"
         break;
       }
       case "turni": {
         localStorage.contesto = "dialisi"
         document.getElementById('sottotitolo').innerHTML="Turni Dialisi"
-        pazienti.initModule( document.querySelector('.main-content') );
+        pazienti.initModule( document.querySelector('.container-centrale ') );
 
         break;
       }
       case "certificazioni": {
         localStorage.contesto = "certificazioni"
         document.getElementById('sottotitolo').innerHTML="Certificazioni"
-        pazienti.initModule( document.querySelector('.main-content') );
+        pazienti.initModule( document.querySelector('.container-centrale ') );
 
         break;
       }
       case "anagrafica": {
         localStorage.contesto = "anagrafica"
         document.getElementById('sottotitolo').innerHTML="Anagrafica"
-        pazienti.initModule( document.querySelector('.main-content') );
+        pazienti.initModule( document.querySelector('.container-centrale ') );
         break;
       }
       case "accettazioni": {
         console.log("chiamo la pazienti initmodule")
         localStorage.contesto = "accettazioni"
         document.getElementById('sottotitolo').innerHTML="Accettazione - Gestione"
-        pazienti.initModule( document.querySelector('.main-content') );
+        pazienti.initModule( document.querySelector('.container-centrale ') );
         break;
       }
       case "risultati": {
@@ -114,7 +155,8 @@ const initModule = ( container ) => {
   //document.querySelector('main-content').innerHTML =  main_html;
   container.innerHTML = main_html;
   document.querySelector('.navbar-nav').innerHTML = navbar_html;
-  const li = document.getElementsByClassName( 'shell-nav-li' );
+  //const li = document.getElementsByClassName( 'shell-nav-li' );
+  const li = document.getElementsByClassName( 'menuitem' );
   for (let _li of li) {
         _li.addEventListener(
           "click", ( event ) => {
@@ -124,6 +166,7 @@ const initModule = ( container ) => {
           }
       );
   }
+  laterale.initModule();
 }  
 
 

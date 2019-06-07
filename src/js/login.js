@@ -11,7 +11,7 @@ import * as shell from './shell.js';
 
 
 
-const login_html = `
+const login_html_old = `
 <body>
     <div id="login">
         <h3 class="text-center text-white pt-5">Login form</h3>
@@ -43,7 +43,19 @@ const login_html = `
 </body>
 `;
 
-
+const login_html = `
+<div class="login-page" >
+<h3 class="text-center text-info">Login</h3>
+    <div class="form">
+       <form id="login-form" name='search' class="login-form" action="" method="post">
+                <input type="text" name="username" id="username" placeholder="username">
+                <input type="password" name="password" id="password" placeholder="password">
+                <button id="submit" name="submit" value="submit">Login</button>
+            </div>
+       </form>
+    </div>
+</div>
+`;
 
 
 document.addEventListener( 'oklogin', ( event ) => {

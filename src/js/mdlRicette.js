@@ -172,6 +172,12 @@ sio.on( 'searchRicettaWeb', ( result ) => {
 
 
 // moduli lato client
+const searchRicettaWebSimulata = ( queryString ) => {
+
+  console.log('invio al server la richiesta :searchRicettaWeb ' + queryString)
+
+   sio.emit( 'searchRicettaWebSimulata', queryString )
+}
 
 const searchRicettaWeb = ( queryString ) => {
 
@@ -244,6 +250,7 @@ const riepilogoContabileRicetta = ( queryString ) => {
 }
 // ezport dei moduli lato client
 export {
+  searchRicettaWebSimulata,
   searchRicettaWeb,
   deleteRicetta,
   createRicetta,

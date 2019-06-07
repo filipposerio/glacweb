@@ -10,6 +10,8 @@ import * as esamepaziente   from './esamiPaziente.js';
 import * as esameprivato   from './esamiPrivato.js';
 import * as esame   from './esamiRicetta.js';
 import * as utility   from './utility.js';
+import * as pazienti    from './pazienti.js';
+
 
 
 /*
@@ -95,18 +97,23 @@ document.addEventListener( 'selezionePazienteAcc', ( event ) => {
   const htmlPaziente = `
       <button class="btn btn-link btn-sm"  id="elencoaccettazioni" ><h6>Paziente selezionato: ${event.data.cognome}</h6></button>
 `;
+/*
 const pz  = document.getElementById( "cercapaziente" );
 pz.innerHTML=""
 const dtl  = document.getElementById( "dtlPazienti" );
 dtl.innerHTML=""
+
 //const info_ricette  = document.getElementById( "info_ricetta" );
 //info_ricette.innerHTML = ''
 const info_paziente  = document.getElementById( "info_paziente" );
 info_paziente.innerHTML = htmlPaziente
+
 const btn_accettazioni  = document.getElementById( "elencoaccettazioni" );
 btn_accettazioni.addEventListener ('click', accettazioni, false);
-objPaziente = event.data
+
 //console.log(document)
+*/
+objPaziente = event.data
 initModule( document.querySelector('.read-sub') );
 });
 
@@ -137,6 +144,7 @@ document.addEventListener( 'selezioneAccettazione', ( event ) => {
       <button id="acccselezionata" class="btn btn-link btn-sm"><h6>Accettazione N.  ${localStorage.idAccettazione} del ${localStorage.dataAccettazione} </h6> </button>
       <br>
       <button class="btn-link btn-sm" id="elencoricette" >Ricette</button>
+      <button class="btn-link btn-sm" id="elencoricette" >Esami senza ricetta</button>
       <button class="btn-link btn-sm" id="confermaaccettazione" >Chiudi accettazione</button>
 
       <!--button class="btn-link btn-sm" id="stampacertificazioni" >Stampa certificazioni</button-->
@@ -451,7 +459,6 @@ const list = ( rows ) => {
   console.log("aggiungo event listener nuova accettazione")
   document.getElementById('nuovaAccettazione').addEventListener('click', nuovo );
 
-  const table  = document.getElementById( "accettazioneList" );
   //const tableRows = table.querySelectorAll(".row");
   const tableRows =document.getElementsByClassName( "cardaccettazioni" );
   for( let row of tableRows ) {
@@ -463,6 +470,10 @@ const list = ( rows ) => {
             localStorage.dataAccettazione= ""//rowCols[2].innerText;
             localStorage.totaleLordo= ""//rowCols[3].innerText;
             localStorage.totaleNetto= ""//rowCols[4].innerText;
+            const event2 = new CustomEvent('selezioneAccettazioneLat', {bubbles: true, cancelable: true})                        
+            event2.data=  objAccettazione
+            document.dispatchEvent( event2 )
+            const table  = document.getElementById( "accettazioneList" );
             const event1 = new CustomEvent('selezioneAccettazione', {bubbles: true, cancelable: true})
             objAccettazione.idaccettazione =row.id
             objAccettazione.objPaziente = objPaziente;
@@ -509,7 +520,9 @@ const initModule = ( container ) => {
   //const form = document.forms.search;
   //form.addEventListener ('submit', search, false);
   //document.getElementById('info').innerHTML = ''
-
+  console.log("verifica obj Paziente 0 :")
+  console.log(objPaziente)    
+  pazienti.setPaziente(objPaziente); 
   mdlAccettazioni.searchAccettazioniPaziente( objPaziente.idanagrafica );
 };
 

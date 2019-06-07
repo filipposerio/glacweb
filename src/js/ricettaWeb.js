@@ -188,7 +188,7 @@ document.addEventListener( 'searchRicetteAccettazione', ( event ) => {
     console.log("searchRicetteAccettazione event.data undefined!!!!!!")
     //message.show("Nessuna ricetta presente per la accettazione selezionata.");
     //message.show("Nessuna ricetta presente per la accettazione selezionata.");
-    list([]);
+    listCard([]);
   }
 
 });
@@ -245,11 +245,53 @@ const riepilogoricetta = () => {
 
 };
 
+const demSimulata = () => {
+  document.querySelector( '.elencoric-sub' ).innerHTML = ricettaDemHTML;
+  const form = document.forms[ 'searchricette' ];
+  form.cf.value = objAccettazionePaziente.objPaziente.cf;
+  form.addEventListener ('submit', searchwebSimulata, false);
+};
 const dem = () => {
   document.querySelector( '.elencoric-sub' ).innerHTML = ricettaDemHTML;
   const form = document.forms[ 'searchricette' ];
   form.cf.value = objAccettazionePaziente.objPaziente.cf;
   form.addEventListener ('submit', searchweb, false);
+};
+
+const searchwebSimulata = ( event ) => {
+  let ric = {}
+
+  ric.Esito   = "0000";
+  ric.Errori  ="Operazione eseguita correttamente";
+  ric.aslAssistito ="206";
+  ric.cfMedico1 = "LGLVCN68B49G273W";
+  ric.codEsenzione= "0031";
+  ric.codEsitoVisualizzazione = "0000";
+  ric.dataCompilazione = "2019-05-25";
+  ric.dataSpedizione = "";
+  ric.descrizioneDiagnosi = "IGT RIDOTTA TOLLERANZA GLUCOSIO - EPATITE CRONICA - IPERTENSIONE ARTERIOSA- TIROIDITE -DISLIPIDEMIA";
+  ric.NEsami =  "3";
+  ric.esami=[]
+  ric.esami.push("90844");
+
+
+  console.log('scattata la search searchRicettaWeb n. ' +  event.target.name.value );
+  event.preventDefault();
+  console.log("chiamo la searchRicettaWeb......" );
+  let objRicetta = {}
+  objRicetta.nricetta = event.target.name.value;
+  objRicetta.cf = event.target.cf.value;
+  objRicetta.idAccettazione = objAccettazionePaziente.idaccettazione;
+  objRicetta.idPaziente = objAccettazionePaziente.objPaziente.idanagrafica;
+  objRicetta.ric = ric
+  //console.log(objRicetta)
+  const now = new Date()
+  const dFruizioneStr = now.getFullYear().toString() +"-" + (now.getMonth()+1).toString().padStart(2, '0') + "-" + (now.getDate().toString().padStart(2,'0'))
+  objRicetta.dataFruizione = dFruizioneStr
+
+  model.searchRicettaWebSimulata( objRicetta);
+  
+
 };
 
 const searchweb = ( event ) => {
@@ -273,6 +315,7 @@ const searchweb = ( event ) => {
   objRicetta.dataFruizione = dFruizioneStr
 
   model.searchRicettaWeb( objRicetta);
+  
 
 };
 
@@ -372,8 +415,9 @@ const listCard = ( rows ) => {
   <button class="btn-link btn-sm" id="confermaaccettazione" >Concludi accettazione</button-->
   <br>
   <div class="container-fluid">
-  <button id="dem" class="btn-xs btn-link"  >Aggiungi una Ricetta dematerializata </button>
-  <button id="nodem" class="btn-xs btn-link" >Aggiungi una Ricetta non dematerializzata </button>
+  <button id="demSimulata" class="btn-xs btn-link"  >Aggiungi una Ricetta SSN dematerializata SIMULATORE</button>
+  <button id="dem" class="btn-xs btn-link"  >Aggiungi una Ricetta SSN dematerializata </button>  
+  <button id="nodem" class="btn-xs btn-link" >Aggiungi una Ricetta SSN non dematerializzata </button>
   <br>
   <br>
   <!--h6 align="center"> Elenco ricette della accettazione </h6--> 
@@ -441,11 +485,15 @@ const listCard = ( rows ) => {
 
   //document.querySelector( '.elencoacc-sub' ).innerHTML = html;
 
+  
   document.querySelector( '.elencoric-sub' ).innerHTML = html;
   const btn_dem  = document.getElementById( "dem" );
   btn_dem.addEventListener ('click', dem, false);
   const btn_nodem  = document.getElementById( "nodem" );
   btn_nodem.addEventListener ('click', nuovo, false);
+  const btn_demSimulata  = document.getElementById( "demSimulata" );
+  btn_demSimulata.addEventListener ('click', demSimulata, false);
+
   //const btn_ricette  = document.getElementById( "elencoricette" );
   //btn_ricette.addEventListener ('click', ricetteAccettazione, false);
   //const btn_conferma  = document.getElementById( "confermaaccettazione" );
